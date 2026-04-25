@@ -159,6 +159,25 @@ async def run_assessment_pipeline(
         else:
             risk_level = RiskLevel.CRITICAL
 
+        # Step 7.5: Search verified facilities if high risk
+        verified_facilities = None
+        if risk_level in [RiskLevel.HIGH, RiskLevel.CRITICAL] and request.location:
+            from .facilities import search_facilities
+            lat = request.location.get("lat")
+            lng = request.location.get("lng")
+            if lat is not None and lng is not None:
+                try:
+                    facilities_res = await search_facilities(
+                        latitude=lat,
+                        longitude=lng,
+                        radius=50.0,
+                        current_user={"id": user_id}
+                    )
+                    verified_facilities = [f.model_dump() for f in facilities_res.facilities]
+                except Exception as e:
+                    import logging
+                    logging.getLogger("api").error(f"Failed to auto-fetch facilities: {e}")
+
         # Build response
         response = AssessmentResponse(
             id=assessment_id,
@@ -184,6 +203,7 @@ async def run_assessment_pipeline(
             when_to_seek_care=escalation_result.get(
                 "when_to_seek_care", "If symptoms worsen or new symptoms develop"
             ),
+            verified_facilities=verified_facilities,
             disclaimers=[
                 "This assessment is for informational purposes only and is NOT a medical diagnosis.",
                 "Always consult a healthcare provider for medical advice.",

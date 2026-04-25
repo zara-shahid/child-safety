@@ -251,6 +251,7 @@ class AssessmentResponse(BaseModel):
     # Actions
     suggested_actions: list[str]
     when_to_seek_care: str
+    verified_facilities: list[dict[str, Any]] | None = None
 
     # Disclaimers
     disclaimers: list[str]

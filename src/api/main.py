@@ -238,6 +238,7 @@ Authorization: Bearer <your_token>
         mental_health,
         symptom_checker,
         symptoms,
+        facilities,
     )
 
     app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
@@ -246,6 +247,7 @@ Authorization: Bearer <your_token>
     app.include_router(assessment.router, prefix="/api/v1/assessment", tags=["Assessment"])
     app.include_router(guidelines.router, prefix="/api/v1/guidelines", tags=["Guidelines"])
     app.include_router(environment.router, prefix="/api/v1/environment", tags=["Environment"])
+    app.include_router(facilities.router, prefix="/api/v1/facilities", tags=["Facilities"])
 
     # AI-powered analysis (Vertex AI)
     app.include_router(ai_analysis.router, prefix="/api/v1", tags=["AI Analysis (Vertex AI)"])

@@ -19,6 +19,7 @@ from .ingestion_agent import IngestionAgent
 from .medication_safety_agent import MedicationSafetyAgent
 from .phenotype_agent import PhenotypeAgent
 from .risk_agent import RiskAgent
+from .facility_verification_agent import FacilityVerificationAgent
 
 __all__ = [
     "BaseAgent",
@@ -31,4 +32,5 @@ __all__ = [
     "MedicationSafetyAgent",
     "GeoExposureAgent",
     "EscalationAgent",
+    "FacilityVerificationAgent",
 ]
