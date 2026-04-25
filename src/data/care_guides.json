@@ -1,0 +1,305 @@
+{
+  "version": "1.0.0",
+  "disclaimer": "This information is for educational purposes only and is not a substitute for professional medical advice. Always consult a healthcare provider.",
+  "guides": {
+    "fever": {
+      "id": "fever",
+      "title": "Fever Care Guide",
+      "summary": "Fever is the body's natural response to infection. Most fevers in children are caused by viral illnesses and resolve on their own.",
+      "when_to_call_911": [
+        "Fever in infant under 3 months old (any fever)",
+        "Child is unresponsive or very difficult to wake",
+        "Child has difficulty breathing",
+        "Child has a seizure",
+        "Child has purple or blood-red spots on skin that don't fade with pressure"
+      ],
+      "when_to_call_now": [
+        "Fever above 104°F (40°C)",
+        "Fever in infant 3-6 months old above 101°F (38.3°C)",
+        "Child looks very sick or is unusually drowsy",
+        "Stiff neck or severe headache",
+        "Child is not making tears when crying or has no wet diapers for 8+ hours",
+        "Child has had a febrile seizure (first time)"
+      ],
+      "when_to_call_24_hours": [
+        "Fever lasting more than 3 days",
+        "Fever between 102-104°F (38.9-40°C) in children over 3 months",
+        "Child has ear pain or sore throat",
+        "Child is not drinking well",
+        "Fever went away for 24+ hours then came back"
+      ],
+      "home_care": {
+        "general_advice": [
+          "Keep your child comfortable - they don't need to 'sweat out' the fever",
+          "Dress in light clothing and use light blankets",
+          "Ensure they get plenty of rest",
+          "Push fluids - water, clear broths, popsicles, oral rehydration solutions",
+          "Monitor for warning signs"
+        ],
+        "medications": {
+          "acetaminophen": {
+            "when_to_use": "For fever above 102°F (38.9°C) or if child is uncomfortable",
+            "dosing": "See dosage chart based on weight",
+            "frequency": "Every 4-6 hours as needed",
+            "warnings": ["Do not exceed 5 doses in 24 hours", "Do not give to infants under 3 months without doctor approval"]
+          },
+          "ibuprofen": {
+            "when_to_use": "Alternative to acetaminophen for children 6 months and older",
+            "dosing": "See dosage chart based on weight",
+            "frequency": "Every 6-8 hours as needed",
+            "warnings": ["Not for infants under 6 months", "Give with food to prevent stomach upset", "Avoid if child is dehydrated"]
+          }
+        },
+        "what_not_to_do": [
+          "Do not give aspirin to children (risk of Reye syndrome)",
+          "Do not use rubbing alcohol baths",
+          "Do not bundle up a child with fever",
+          "Do not alternate medications unless directed by a doctor",
+          "Do not wake a sleeping child just to give fever medicine"
+        ]
+      },
+      "age_specific": {
+        "infant_0_3_months": {
+          "critical_warning": "ANY fever (100.4°F/38°C or higher) in a baby under 3 months requires IMMEDIATE medical evaluation. Go to the emergency room.",
+          "reason": "Young infants cannot fight infections well and can become very sick very quickly."
+        },
+        "infant_3_6_months": {
+          "warning": "Call your doctor for any fever above 101°F (38.3°C) or if baby seems uncomfortable or unwell."
+        },
+        "child_6_24_months": {
+          "advice": "Monitor closely. Call if fever lasts more than 24 hours or child seems very sick."
+        }
+      }
+    },
+    "cough_cold": {
+      "id": "cough_cold",
+      "title": "Cough and Cold Care Guide",
+      "summary": "Most coughs and colds are caused by viruses and will get better on their own in 7-10 days. Antibiotics do not help viral infections.",
+      "when_to_call_911": [
+        "Child is having severe difficulty breathing",
+        "Child's lips or face are turning blue",
+        "Child is making grunting sounds with each breath",
+        "Child is unresponsive or very difficult to wake"
+      ],
+      "when_to_call_now": [
+        "Child is breathing very fast or working hard to breathe",
+        "Nostrils flare with breathing or you can see ribs with each breath",
+        "Child cannot speak or cry normally due to breathing difficulty",
+        "Barking cough with noisy breathing (stridor) that doesn't improve with steam",
+        "Child is drooling and unable to swallow",
+        "Child under 3 months with any cough"
+      ],
+      "when_to_call_24_hours": [
+        "Cough lasting more than 2 weeks",
+        "Cough with fever lasting more than 3 days",
+        "Wheezing or whistling when breathing",
+        "Child has ear pain",
+        "Yellow or green nasal discharge for more than 10 days",
+        "Cough keeping child from sleeping"
+      ],
+      "home_care": {
+        "general_advice": [
+          "Encourage rest and plenty of fluids",
+          "Use a cool-mist humidifier in the bedroom",
+          "Elevate the head of the bed slightly for older children",
+          "Saline nose drops or spray to help with congestion",
+          "Honey (for children over 1 year) can help soothe coughs",
+          "Keep child away from smoke and strong odors"
+        ],
+        "age_specific_tips": {
+          "infants": [
+            "Use a bulb syringe to clear nasal mucus before feeding and sleeping",
+            "Saline drops before suctioning can help loosen mucus",
+            "Keep baby upright for 20-30 minutes after feeding"
+          ],
+          "toddlers": [
+            "Teach to blow nose gently, one nostril at a time",
+            "Offer warm liquids like chicken soup",
+            "Use honey (1-2 teaspoons) for cough relief"
+          ]
+        },
+        "what_not_to_do": [
+          "Do NOT give cough and cold medicines to children under 6 years",
+          "Do NOT give honey to infants under 1 year (botulism risk)",
+          "Do NOT use mentholated rubs on infants under 2 years",
+          "Do NOT give aspirin to children"
+        ]
+      }
+    },
+    "vomiting_diarrhea": {
+      "id": "vomiting_diarrhea",
+      "title": "Vomiting and Diarrhea Care Guide",
+      "summary": "Most vomiting and diarrhea in children is caused by viral gastroenteritis ('stomach flu') and resolves within a few days.",
+      "when_to_call_911": [
+        "Blood in vomit (looks red or like coffee grounds)",
+        "Bright green (bile) vomit",
+        "Child is unresponsive or very difficult to wake",
+        "Child has severe abdominal pain",
+        "Signs of severe dehydration (no tears, sunken eyes, lethargic)"
+      ],
+      "when_to_call_now": [
+        "Blood in stool (red or black tarry stool)",
+        "Vomiting for more than 24 hours in children under 2 years",
+        "Vomiting for more than 48 hours in older children",
+        "No wet diaper for 8 hours or no urination for 8 hours",
+        "Child refuses all fluids",
+        "Projectile vomiting in infant under 3 months",
+        "Child has severe stomach pain or pain in right lower belly"
+      ],
+      "when_to_call_24_hours": [
+        "Diarrhea lasting more than 1 week",
+        "Vomiting lasting more than 2-3 days",
+        "Fever with vomiting or diarrhea lasting more than 3 days",
+        "Child seems dehydrated (dry mouth, less tears, decreased urination)"
+      ],
+      "home_care": {
+        "rehydration": {
+          "key_message": "The most important treatment is preventing dehydration by replacing lost fluids.",
+          "recommended_fluids": [
+            "Oral rehydration solution (Pedialyte, Enfalyte)",
+            "For breastfed babies: continue breastfeeding",
+            "For older children: water, diluted juice, clear broths"
+          ],
+          "how_to_give_fluids": [
+            "Small amounts frequently: 1-2 tablespoons every 5-10 minutes",
+            "Use a syringe, spoon, or cup for small children",
+            "Gradually increase amounts as tolerated",
+            "Goal: 1-2 ounces per hour for infants, 2-4 ounces per hour for older children"
+          ],
+          "what_to_avoid": [
+            "Full-strength fruit juices (can worsen diarrhea)",
+            "Sugary drinks like soda",
+            "Sports drinks (not appropriate for young children)"
+          ]
+        },
+        "feeding": [
+          "Continue breastfeeding or formula feeding",
+          "Restart regular diet as soon as child can tolerate it (within 12-24 hours)",
+          "Avoid fatty or spicy foods initially",
+          "BRAT diet (bananas, rice, applesauce, toast) is okay but not required"
+        ],
+        "medications": {
+          "note": "Most medications are NOT recommended for children with vomiting/diarrhea",
+          "what_not_to_give": [
+            "Anti-diarrhea medications (like Imodium) - not for children",
+            "Anti-nausea medications - only if prescribed by doctor"
+          ]
+        }
+      },
+      "dehydration_signs": {
+        "mild": ["Slightly dry mouth", "Slightly decreased urination", "Mild thirst"],
+        "moderate": ["Dry mouth", "Fewer wet diapers", "No tears when crying", "Fussy or less active"],
+        "severe": ["Very dry mouth", "Sunken eyes", "Sunken soft spot in infants", "No urine for 8+ hours", "Lethargic or hard to wake", "Cold, mottled hands and feet"]
+      }
+    },
+    "rash": {
+      "id": "rash",
+      "title": "Rash Care Guide",
+      "summary": "Rashes are common in children and usually caused by viral infections or allergic reactions. Most are not serious.",
+      "when_to_call_911": [
+        "Rash with purple or red spots that don't fade when pressed (petechiae/purpura)",
+        "Rash with difficulty breathing or swelling of face/lips/tongue",
+        "Child seems very sick, lethargic, or has stiff neck with rash"
+      ],
+      "when_to_call_now": [
+        "Rash that spreads rapidly",
+        "Rash with high fever (above 104°F/40°C)",
+        "Rash with severe itching that is not controlled with home care",
+        "Blistering rash",
+        "Rash that looks infected (increasing redness, warmth, pus)"
+      ],
+      "when_to_call_24_hours": [
+        "Rash with fever lasting more than 3 days",
+        "Rash not improving after several days",
+        "Rash spreading to new areas",
+        "Concern about possible exposure to infectious disease"
+      ],
+      "home_care": {
+        "general_advice": [
+          "Keep the area clean and dry",
+          "Avoid scratching - trim fingernails short",
+          "Apply cool compresses for itching",
+          "Dress in loose, cotton clothing",
+          "Avoid harsh soaps and hot baths"
+        ],
+        "for_itching": [
+          "Oatmeal baths (colloidal oatmeal)",
+          "Calamine lotion",
+          "Hydrocortisone cream 1% (for children over 2, or as directed by doctor)",
+          "Oral antihistamine (diphenhydramine) for severe itching - check dosing"
+        ]
+      },
+      "common_rashes": {
+        "viral_exanthem": {
+          "description": "Pink or red spots/bumps appearing with or after viral illness",
+          "treatment": "Usually resolves on its own in 3-5 days"
+        },
+        "hives": {
+          "description": "Raised, itchy, red welts that come and go",
+          "treatment": "Antihistamines, avoid triggers",
+          "warning": "Seek immediate care if with breathing difficulty or swelling"
+        },
+        "eczema": {
+          "description": "Dry, itchy, red patches often in elbow/knee creases",
+          "treatment": "Moisturize frequently, avoid triggers, topical steroids if prescribed"
+        }
+      }
+    },
+    "ear_pain": {
+      "id": "ear_pain",
+      "title": "Ear Pain Care Guide",
+      "summary": "Ear pain is common in children, often caused by ear infections or fluid buildup.",
+      "when_to_call_911": [
+        "Ear pain with stiff neck and high fever",
+        "Child is unresponsive or very difficult to wake"
+      ],
+      "when_to_call_now": [
+        "Severe ear pain",
+        "Ear pain with facial weakness or drooping",
+        "Bloody or pus discharge from ear",
+        "Significant swelling or redness behind the ear",
+        "Ear pain after inserting object in ear"
+      ],
+      "when_to_call_24_hours": [
+        "Ear pain lasting more than 2 days",
+        "Ear pain with fever",
+        "Ear pain not relieved by pain medicine",
+        "Clear or cloudy fluid draining from ear"
+      ],
+      "home_care": {
+        "pain_relief": [
+          "Acetaminophen or ibuprofen for pain (see dosage charts)",
+          "Warm compress on the ear",
+          "Elevate head while sleeping",
+          "Distraction and comfort"
+        ],
+        "what_not_to_do": [
+          "Do not put anything in the ear (cotton swabs, drops) unless directed by doctor",
+          "Do not fly if possible during acute ear infection"
+        ]
+      }
+    }
+  },
+  "emergency_signs": {
+    "title": "Warning Signs - When to Seek Emergency Care",
+    "always_call_911": [
+      "Child is not breathing or is struggling to breathe",
+      "Child is unresponsive or very difficult to wake up",
+      "Child is having a seizure",
+      "Child has purple or red spots on skin that don't fade with pressure",
+      "Child has been poisoned",
+      "Severe allergic reaction with difficulty breathing or swelling of face/throat",
+      "Severe bleeding that won't stop",
+      "Child is choking and cannot breathe, cry, or cough",
+      "Serious injury (head injury with loss of consciousness, suspected broken bone, deep cut)"
+    ],
+    "infants_under_3_months": [
+      "Any fever (100.4°F / 38°C or higher)",
+      "Not feeding well",
+      "Persistent vomiting",
+      "Unusual crying or irritability",
+      "Very sleepy or hard to wake",
+      "Breathing problems"
+    ]
+  }
+}

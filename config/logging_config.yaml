@@ -1,0 +1,249 @@
+# EPCID Logging Configuration
+# Comprehensive Audit and Observability Logging
+
+version: "1.0.0"
+
+# Logging Settings
+logging:
+  version: 1
+  disable_existing_loggers: false
+
+  # Format Definitions
+  formatters:
+    standard:
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+    
+    detailed:
+      format: "%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(funcName)s - %(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+    
+    json:
+      class: "pythonjsonlogger.jsonlogger.JsonFormatter"
+      format: "%(asctime)s %(name)s %(levelname)s %(message)s %(pathname)s %(lineno)d %(funcName)s"
+
+  # Handler Definitions
+  handlers:
+    console:
+      class: "logging.StreamHandler"
+      level: "INFO"
+      formatter: "standard"
+      stream: "ext://sys.stdout"
+
+    console_debug:
+      class: "logging.StreamHandler"
+      level: "DEBUG"
+      formatter: "detailed"
+      stream: "ext://sys.stdout"
+
+    file_rotating:
+      class: "logging.handlers.RotatingFileHandler"
+      level: "DEBUG"
+      formatter: "json"
+      filename: "data/logs/epcid.log"
+      maxBytes: 10485760  # 10MB
+      backupCount: 10
+      encoding: "utf8"
+
+    audit_file:
+      class: "logging.handlers.RotatingFileHandler"
+      level: "INFO"
+      formatter: "json"
+      filename: "data/logs/audit.log"
+      maxBytes: 52428800  # 50MB
+      backupCount: 50
+      encoding: "utf8"
+
+    error_file:
+      class: "logging.handlers.RotatingFileHandler"
+      level: "ERROR"
+      formatter: "json"
+      filename: "data/logs/error.log"
+      maxBytes: 10485760  # 10MB
+      backupCount: 20
+      encoding: "utf8"
+
+    security_file:
+      class: "logging.handlers.RotatingFileHandler"
+      level: "INFO"
+      formatter: "json"
+      filename: "data/logs/security.log"
+      maxBytes: 52428800  # 50MB
+      backupCount: 100
+      encoding: "utf8"
+
+    model_file:
+      class: "logging.handlers.RotatingFileHandler"
+      level: "INFO"
+      formatter: "json"
+      filename: "data/logs/model.log"
+      maxBytes: 10485760  # 10MB
+      backupCount: 30
+      encoding: "utf8"
+
+  # Logger Definitions
+  loggers:
+    epcid:
+      level: "DEBUG"
+      handlers: ["console", "file_rotating"]
+      propagate: false
+
+    epcid.agents:
+      level: "DEBUG"
+      handlers: ["console", "file_rotating"]
+      propagate: false
+
+    epcid.risk:
+      level: "INFO"
+      handlers: ["console", "file_rotating", "audit_file"]
+      propagate: false
+
+    epcid.audit:
+      level: "INFO"
+      handlers: ["audit_file"]
+      propagate: false
+
+    epcid.security:
+      level: "INFO"
+      handlers: ["security_file", "console"]
+      propagate: false
+
+    epcid.model:
+      level: "INFO"
+      handlers: ["model_file", "console"]
+      propagate: false
+
+    epcid.api:
+      level: "INFO"
+      handlers: ["console", "file_rotating"]
+      propagate: false
+
+  root:
+    level: "INFO"
+    handlers: ["console", "file_rotating", "error_file"]
+
+# Audit Log Configuration
+audit:
+  enabled: true
+  immutable: true
+  retention_days: 2555  # 7 years for medical compliance
+  
+  events:
+    # Data Access Events
+    - patient_data_accessed
+    - risk_assessment_generated
+    - guideline_retrieved
+    - medication_lookup
+    - escalation_triggered
+    
+    # Agent Events
+    - agent_invoked
+    - agent_completed
+    - agent_failed
+    - agent_timeout
+    
+    # Model Events
+    - model_inference
+    - model_confidence_low
+    - model_uncertainty_high
+    - model_fallback_triggered
+    
+    # User Events
+    - user_login
+    - user_logout
+    - user_action
+    - consent_given
+    - consent_revoked
+    
+    # System Events
+    - system_startup
+    - system_shutdown
+    - config_changed
+    - api_rate_limited
+
+  required_fields:
+    - timestamp
+    - event_type
+    - user_id
+    - session_id
+    - child_id
+    - action
+    - outcome
+    - ip_address
+    - user_agent
+
+# Alert Configuration
+alerts:
+  enabled: true
+  
+  critical_patterns:
+    - pattern: "CRITICAL risk tier assigned"
+      action: "immediate_notification"
+      channels: ["slack", "pagerduty"]
+    
+    - pattern: "Model confidence below threshold"
+      action: "log_and_alert"
+      channels: ["slack"]
+    
+    - pattern: "Safety rule triggered"
+      action: "immediate_notification"
+      channels: ["slack", "pagerduty"]
+    
+    - pattern: "API rate limit exceeded"
+      action: "log_and_alert"
+      channels: ["slack"]
+    
+    - pattern: "Authentication failure"
+      action: "security_alert"
+      channels: ["security_team"]
+
+  notification_channels:
+    slack:
+      webhook_url: ${SLACK_WEBHOOK_URL:}
+      channel: "#epcid-alerts"
+    
+    pagerduty:
+      integration_key: ${PAGERDUTY_KEY:}
+      severity_mapping:
+        critical: "critical"
+        high: "error"
+        moderate: "warning"
+        low: "info"
+    
+    email:
+      smtp_host: ${SMTP_HOST:}
+      smtp_port: ${SMTP_PORT:587}
+      from_address: "alerts@epcid.health"
+      recipients:
+        - "oncall@epcid.health"
+
+# Performance Metrics
+metrics:
+  latency:
+    buckets: [0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0, 10.0]
+    percentiles: [0.5, 0.9, 0.95, 0.99]
+  
+  throughput:
+    window_seconds: 60
+    report_interval_seconds: 10
+  
+  custom_metrics:
+    - name: "risk_assessment_latency"
+      type: "histogram"
+      labels: ["risk_tier", "model_type"]
+    
+    - name: "api_call_duration"
+      type: "histogram"
+      labels: ["api_name", "endpoint", "status"]
+    
+    - name: "model_inference_count"
+      type: "counter"
+      labels: ["model_name", "risk_tier"]
+    
+    - name: "safety_rule_triggers"
+      type: "counter"
+      labels: ["rule_name", "outcome"]
+    
+    - name: "escalation_count"
+      type: "counter"
+      labels: ["escalation_type", "risk_tier"]

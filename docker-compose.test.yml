@@ -1,0 +1,48 @@
+version: '3.8'
+
+# Docker Compose configuration for testing
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: epcid-api-test
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgresql://epcid:testpass@db:5432/epcid_test
+      - JWT_SECRET_KEY=test-secret-key-for-testing-only
+      - TESTING=true
+      - LOG_LEVEL=DEBUG
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - test-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: epcid-db-test
+    environment:
+      - POSTGRES_USER=epcid
+      - POSTGRES_PASSWORD=testpass
+      - POSTGRES_DB=epcid_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U epcid -d epcid_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    tmpfs:
+      - /var/lib/postgresql/data
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge

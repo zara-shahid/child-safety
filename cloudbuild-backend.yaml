@@ -1,0 +1,41 @@
+substitutions:
+  _TAG: 'latest'
+
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/epcid-backend:${_TAG}'
+      - '-f'
+      - 'Dockerfile.backend'
+      - '.'
+
+  # Push the images
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/epcid-backend:${_TAG}']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'epcid-backend'
+      - '--image=gcr.io/$PROJECT_ID/epcid-backend:${_TAG}'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--port=8080'
+      - '--set-env-vars=^@^CORS_ORIGINS=https://epcid-frontend-365415503294.us-central1.run.app,https://epcid-frontend-lqgrtavcha-uc.a.run.app@GOOGLE_CLOUD_PROJECT=$PROJECT_ID'
+
+images:
+  - 'gcr.io/$PROJECT_ID/epcid-backend:${_TAG}'
+
+timeout: '1800s'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

@@ -1,0 +1,201 @@
+{
+  "version": "1.0.0",
+  "disclaimer": "These dosing guidelines are for reference only. Always confirm dosing with your pediatrician or pharmacist. Do not exceed recommended doses. When in doubt, contact your healthcare provider.",
+  "general_warnings": [
+    "Always use the measuring device that comes with the medication",
+    "Never use a kitchen spoon to measure medication",
+    "Always dose by weight, not age, when possible",
+    "Do not give multiple products containing the same active ingredient",
+    "Keep all medications out of reach of children",
+    "Check expiration dates before use"
+  ],
+  "medications": {
+    "acetaminophen": {
+      "brand_names": ["Tylenol", "FeverAll", "Panadol"],
+      "uses": ["Fever reduction", "Pain relief"],
+      "dose_per_kg": "10-15 mg/kg per dose",
+      "max_daily_doses": 5,
+      "frequency": "Every 4-6 hours as needed",
+      "max_daily_dose_mg_kg": "75 mg/kg/day (not to exceed 4000 mg/day)",
+      "age_restrictions": {
+        "under_3_months": "Do not use without doctor's approval",
+        "3_months_and_older": "May use as directed"
+      },
+      "formulations": {
+        "infant_drops": {
+          "concentration": "80 mg/0.8 mL (160 mg/1.6 mL)",
+          "note": "Concentrated - check label carefully"
+        },
+        "children_liquid": {
+          "concentration": "160 mg/5 mL"
+        },
+        "children_chewable": {
+          "concentration": "160 mg per tablet"
+        },
+        "junior_strength": {
+          "concentration": "160 mg per tablet"
+        },
+        "suppository_infant": {
+          "concentration": "80 mg"
+        },
+        "suppository_children": {
+          "concentration": "120 mg or 325 mg"
+        }
+      },
+      "dosing_chart": [
+        {"weight_lbs": "6-11", "weight_kg": "2.7-5", "liquid_160mg_5ml": "1.25 mL (40 mg)", "chewable_160mg": "-"},
+        {"weight_lbs": "12-17", "weight_kg": "5.5-7.7", "liquid_160mg_5ml": "2.5 mL (80 mg)", "chewable_160mg": "0.5 tablet"},
+        {"weight_lbs": "18-23", "weight_kg": "8.2-10.5", "liquid_160mg_5ml": "3.75 mL (120 mg)", "chewable_160mg": "0.75 tablet"},
+        {"weight_lbs": "24-35", "weight_kg": "10.9-15.9", "liquid_160mg_5ml": "5 mL (160 mg)", "chewable_160mg": "1 tablet"},
+        {"weight_lbs": "36-47", "weight_kg": "16.4-21.4", "liquid_160mg_5ml": "7.5 mL (240 mg)", "chewable_160mg": "1.5 tablets"},
+        {"weight_lbs": "48-59", "weight_kg": "21.8-26.8", "liquid_160mg_5ml": "10 mL (320 mg)", "chewable_160mg": "2 tablets"},
+        {"weight_lbs": "60-71", "weight_kg": "27.3-32.3", "liquid_160mg_5ml": "12.5 mL (400 mg)", "chewable_160mg": "2.5 tablets"},
+        {"weight_lbs": "72-95", "weight_kg": "32.7-43.2", "liquid_160mg_5ml": "15 mL (480 mg)", "chewable_160mg": "3 tablets"},
+        {"weight_lbs": "96+", "weight_kg": "43.6+", "liquid_160mg_5ml": "20 mL (640 mg)", "chewable_160mg": "4 tablets"}
+      ],
+      "warnings": [
+        "Do not exceed 5 doses in 24 hours",
+        "Many cold/flu medicines contain acetaminophen - check all labels",
+        "Can cause liver damage in overdose",
+        "Do not use if child has liver problems without doctor approval"
+      ]
+    },
+    "ibuprofen": {
+      "brand_names": ["Advil", "Motrin", "Children's Ibuprofen"],
+      "uses": ["Fever reduction", "Pain relief", "Inflammation"],
+      "dose_per_kg": "5-10 mg/kg per dose",
+      "max_daily_doses": 4,
+      "frequency": "Every 6-8 hours as needed",
+      "max_daily_dose_mg_kg": "40 mg/kg/day (not to exceed 1200 mg/day for children)",
+      "age_restrictions": {
+        "under_6_months": "Do NOT use",
+        "6_months_and_older": "May use as directed"
+      },
+      "formulations": {
+        "infant_drops": {
+          "concentration": "50 mg/1.25 mL"
+        },
+        "children_liquid": {
+          "concentration": "100 mg/5 mL"
+        },
+        "children_chewable": {
+          "concentration": "50 mg per tablet"
+        },
+        "junior_strength_chewable": {
+          "concentration": "100 mg per tablet"
+        },
+        "junior_strength_tablet": {
+          "concentration": "100 mg per tablet"
+        }
+      },
+      "dosing_chart": [
+        {"weight_lbs": "12-17", "weight_kg": "5.5-7.7", "liquid_100mg_5ml": "2.5 mL (50 mg)", "chewable_50mg": "1 tablet", "note": "6 months minimum"},
+        {"weight_lbs": "18-23", "weight_kg": "8.2-10.5", "liquid_100mg_5ml": "3.75 mL (75 mg)", "chewable_50mg": "1.5 tablets"},
+        {"weight_lbs": "24-35", "weight_kg": "10.9-15.9", "liquid_100mg_5ml": "5 mL (100 mg)", "chewable_50mg": "2 tablets"},
+        {"weight_lbs": "36-47", "weight_kg": "16.4-21.4", "liquid_100mg_5ml": "7.5 mL (150 mg)", "chewable_50mg": "3 tablets"},
+        {"weight_lbs": "48-59", "weight_kg": "21.8-26.8", "liquid_100mg_5ml": "10 mL (200 mg)", "chewable_50mg": "4 tablets"},
+        {"weight_lbs": "60-71", "weight_kg": "27.3-32.3", "liquid_100mg_5ml": "12.5 mL (250 mg)", "chewable_50mg": "5 tablets"},
+        {"weight_lbs": "72-95", "weight_kg": "32.7-43.2", "liquid_100mg_5ml": "15 mL (300 mg)", "chewable_50mg": "6 tablets"},
+        {"weight_lbs": "96+", "weight_kg": "43.6+", "liquid_100mg_5ml": "20 mL (400 mg)", "chewable_50mg": "-", "adult_tablet": "1-2 tablets (200-400 mg)"}
+      ],
+      "warnings": [
+        "NOT for infants under 6 months",
+        "Give with food to prevent stomach upset",
+        "Do not use if child is dehydrated",
+        "Avoid in children with kidney problems",
+        "May worsen asthma in some children",
+        "Do not use before surgery without doctor approval"
+      ]
+    },
+    "diphenhydramine": {
+      "brand_names": ["Benadryl", "Banophen", "Diphenhist"],
+      "uses": ["Allergic reactions", "Itching", "Hives", "Runny nose (allergies)"],
+      "dose_per_kg": "1-1.25 mg/kg per dose",
+      "max_daily_doses": 4,
+      "frequency": "Every 6 hours as needed",
+      "max_daily_dose_mg_kg": "5 mg/kg/day (not to exceed 300 mg/day)",
+      "age_restrictions": {
+        "under_2_years": "Do NOT use without doctor approval",
+        "2_years_and_older": "May use as directed"
+      },
+      "formulations": {
+        "children_liquid": {
+          "concentration": "12.5 mg/5 mL"
+        },
+        "children_chewable": {
+          "concentration": "12.5 mg per tablet"
+        },
+        "adult_tablet": {
+          "concentration": "25 mg per tablet"
+        }
+      },
+      "dosing_chart": [
+        {"weight_lbs": "20-24", "weight_kg": "9-11", "liquid_12.5mg_5ml": "3.75 mL (9.4 mg)", "note": "2 years minimum"},
+        {"weight_lbs": "25-37", "weight_kg": "11.4-16.8", "liquid_12.5mg_5ml": "5 mL (12.5 mg)", "chewable_12.5mg": "1 tablet"},
+        {"weight_lbs": "38-49", "weight_kg": "17.3-22.3", "liquid_12.5mg_5ml": "7.5 mL (18.75 mg)", "chewable_12.5mg": "1.5 tablets"},
+        {"weight_lbs": "50-99", "weight_kg": "22.7-45", "liquid_12.5mg_5ml": "10 mL (25 mg)", "chewable_12.5mg": "2 tablets"},
+        {"weight_lbs": "100+", "weight_kg": "45+", "liquid_12.5mg_5ml": "20 mL (50 mg)", "adult_tablet_25mg": "1-2 tablets"}
+      ],
+      "warnings": [
+        "Causes drowsiness - do not give before activities requiring alertness",
+        "NOT for infants under 2 years without doctor approval",
+        "Do not use to make child sleepy",
+        "Can cause excitability in some children",
+        "Many products contain diphenhydramine - check all labels"
+      ]
+    },
+    "oral_rehydration": {
+      "brand_names": ["Pedialyte", "Enfalyte", "CeraLyte", "Drip Drop"],
+      "uses": ["Fluid replacement", "Dehydration prevention", "Vomiting/diarrhea"],
+      "dose_per_kg": "50-100 mL/kg over 4 hours for mild-moderate dehydration",
+      "frequency": "Small amounts frequently (1-2 tablespoons every 5-10 minutes)",
+      "age_restrictions": {
+        "all_ages": "Safe for all ages including infants"
+      },
+      "general_guidance": {
+        "mild_dehydration": "50 mL/kg over 4 hours + replace ongoing losses",
+        "moderate_dehydration": "100 mL/kg over 4 hours + replace ongoing losses",
+        "maintenance": "Replace each loose stool or vomit episode with: 10 mL/kg for children, 1/2 to 1 cup for older children"
+      },
+      "administration_tips": [
+        "Give 1-2 teaspoons (5-10 mL) every 5 minutes",
+        "Use a syringe, spoon, or medicine cup",
+        "Increase amount gradually as tolerated",
+        "Continue breastfeeding if applicable",
+        "Can be frozen into popsicles for older children"
+      ],
+      "what_not_to_use": [
+        "Sports drinks (too much sugar, wrong electrolyte balance)",
+        "Soda or fruit juice (can worsen diarrhea)",
+        "Plain water alone for rehydration (doesn't replace electrolytes)"
+      ]
+    }
+  },
+  "weight_conversion": {
+    "note": "To convert pounds to kilograms: divide pounds by 2.2",
+    "examples": [
+      {"lbs": 10, "kg": 4.5},
+      {"lbs": 15, "kg": 6.8},
+      {"lbs": 20, "kg": 9.1},
+      {"lbs": 25, "kg": 11.4},
+      {"lbs": 30, "kg": 13.6},
+      {"lbs": 35, "kg": 15.9},
+      {"lbs": 40, "kg": 18.2},
+      {"lbs": 50, "kg": 22.7},
+      {"lbs": 60, "kg": 27.3},
+      {"lbs": 70, "kg": 31.8},
+      {"lbs": 80, "kg": 36.4},
+      {"lbs": 90, "kg": 40.9},
+      {"lbs": 100, "kg": 45.5}
+    ]
+  },
+  "volume_conversion": {
+    "note": "Common measurement conversions",
+    "conversions": [
+      {"from": "1 teaspoon (tsp)", "to": "5 mL"},
+      {"from": "1 tablespoon (tbsp)", "to": "15 mL"},
+      {"from": "1 fluid ounce (oz)", "to": "30 mL"},
+      {"from": "1 cup", "to": "240 mL"}
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'build'
+      - '--build-arg'
+      - 'NEXT_PUBLIC_API_URL=https://epcid-backend-365415503294.us-central1.run.app'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/epcid-frontend:latest'
+      - '-f'
+      - 'frontend/Dockerfile'
+      - './frontend'
+
+  # Push the image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '--all-tags', 'gcr.io/$PROJECT_ID/epcid-frontend']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'epcid-frontend'
+      - '--image=gcr.io/$PROJECT_ID/epcid-frontend:latest'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--memory=512Mi'
+      - '--cpu=1'
+      - '--port=3000'
+
+images:
+  - 'gcr.io/$PROJECT_ID/epcid-frontend:latest'
+
+timeout: '1800s'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

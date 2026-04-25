@@ -1,0 +1,186 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epcid"
+version = "0.1.0"
+description = "Early Pediatric Critical Illness Detection - An agentic AI platform for clinical decision support"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Ayesha-Ali676", email = "Ayesha-Ali676@github.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+keywords = [
+    "pediatric",
+    "healthcare",
+    "clinical-decision-support",
+    "ai",
+    "machine-learning",
+    "fhir",
+    "risk-assessment",
+]
+
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.0.0",
+    "aiohttp>=3.9.0",
+    "httpx>=0.25.0",
+    "numpy>=1.24.0",
+    "scikit-learn>=1.3.0",
+    "chromadb>=0.4.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "structlog>=23.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.7.0",
+    "ruff>=0.1.0",
+]
+ml = [
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "xgboost>=2.0.0",
+    "sentence-transformers>=2.2.0",
+]
+database = [
+    "sqlalchemy>=2.0.0",
+    "asyncpg>=0.29.0",
+    "redis>=5.0.0",
+    "alembic>=1.12.0",
+]
+monitoring = [
+    "prometheus-client>=0.19.0",
+    "opentelemetry-api>=1.21.0",
+    "opentelemetry-sdk>=1.21.0",
+]
+all = [
+    "epcid[dev,ml,database,monitoring]",
+]
+
+[project.urls]
+Homepage = "https://github.com/epcid/epcid"
+Documentation = "https://docs.epcid.health"
+Repository = "https://github.com/epcid/epcid"
+Issues = "https://github.com/epcid/epcid/issues"
+
+[project.scripts]
+epcid = "src.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "config*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | data
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+known_first_party = ["src"]
+skip = [".git", ".venv", "data"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["tests", "data"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [
+    ".git",
+    ".venv",
+    "data",
+    "__pycache__",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+    "UP042", # Class inherits from both str and enum.Enum (we need this for Python 3.10 compatibility)
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+omit = [
+    "*/tests/*",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

@@ -1,0 +1,200 @@
+# EPCID Environment Configuration
+# External APIs and Service Connections
+
+version: "1.0.0"
+
+# Environment Settings
+environment:
+  name: ${EPCID_ENV:development}
+  debug: ${EPCID_DEBUG:false}
+  log_level: ${EPCID_LOG_LEVEL:INFO}
+
+# API Configurations
+apis:
+  # MedlinePlus Connect API
+  medlineplus:
+    base_url: "https://connect.medlineplus.gov/service"
+    enabled: true
+    timeout_seconds: 10
+    retry_attempts: 3
+    cache_ttl_hours: 24
+    endpoints:
+      search: "/v1/search"
+      labs: "/v1/labs"
+      medications: "/v1/medications"
+    response_format: "json"
+    language: "en"
+
+  # OpenFDA API
+  openfda:
+    base_url: "https://api.fda.gov"
+    enabled: true
+    api_key: ${OPENFDA_API_KEY:}
+    timeout_seconds: 15
+    rate_limit_per_minute: 240
+    endpoints:
+      drug_labels: "/drug/label.json"
+      adverse_events: "/drug/event.json"
+      drug_ndc: "/drug/ndc.json"
+      device_events: "/device/event.json"
+    cache_ttl_hours: 12
+
+  # AirNow API (EPA Air Quality)
+  airnow:
+    base_url: "https://www.airnowapi.org"
+    enabled: true
+    api_key: ${AIRNOW_API_KEY:}
+    timeout_seconds: 10
+    endpoints:
+      current: "/aq/observation/zipCode/current"
+      forecast: "/aq/forecast/zipCode"
+      historical: "/aq/observation/zipCode/historical"
+    parameters:
+      format: "application/json"
+      distance: 25
+    cache_ttl_minutes: 30
+
+  # OpenAQ API (Global Air Quality)
+  openaq:
+    base_url: "https://api.openaq.org/v2"
+    enabled: true
+    api_key: ${OPENAQ_API_KEY:}
+    timeout_seconds: 10
+    endpoints:
+      latest: "/latest"
+      measurements: "/measurements"
+      locations: "/locations"
+    cache_ttl_minutes: 30
+
+  # NOAA Climate Data Online
+  noaa:
+    base_url: "https://www.ncdc.noaa.gov/cdo-web/api/v2"
+    enabled: true
+    api_key: ${NOAA_API_KEY:}
+    timeout_seconds: 15
+    endpoints:
+      data: "/data"
+      stations: "/stations"
+      locations: "/locations"
+    cache_ttl_hours: 1
+
+  # OpenWeatherMap (Alternative Weather)
+  openweather:
+    base_url: "https://api.openweathermap.org/data/2.5"
+    enabled: true
+    api_key: ${OPENWEATHER_API_KEY:}
+    timeout_seconds: 10
+    endpoints:
+      current: "/weather"
+      forecast: "/forecast"
+      air_pollution: "/air_pollution"
+    cache_ttl_minutes: 15
+
+  # SMART on FHIR Sandbox
+  fhir_sandbox:
+    base_url: "https://launch.smarthealthit.org/v/r4/fhir"
+    enabled: true
+    auth_type: "oauth2"
+    client_id: ${FHIR_CLIENT_ID:}
+    client_secret: ${FHIR_CLIENT_SECRET:}
+    scopes:
+      - "patient/*.read"
+      - "observation/*.read"
+      - "condition/*.read"
+      - "medicationrequest/*.read"
+      - "immunization/*.read"
+    timeout_seconds: 20
+    fhir_version: "R4"
+
+# Database Configurations
+databases:
+  # Primary PostgreSQL
+  postgres:
+    host: ${POSTGRES_HOST:localhost}
+    port: ${POSTGRES_PORT:5432}
+    database: ${POSTGRES_DB:epcid}
+    username: ${POSTGRES_USER:epcid_user}
+    password: ${POSTGRES_PASSWORD:}
+    ssl_mode: ${POSTGRES_SSL:prefer}
+    pool_size: 10
+    max_overflow: 20
+    pool_timeout: 30
+
+  # Redis Cache
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    db: 0
+    ssl: ${REDIS_SSL:false}
+    pool_size: 10
+
+  # ChromaDB Vector Store
+  chromadb:
+    host: ${CHROMADB_HOST:localhost}
+    port: ${CHROMADB_PORT:8000}
+    collection_name: "epcid_knowledge"
+    embedding_function: "all-MiniLM-L6-v2"
+
+# Message Queue
+message_queue:
+  type: "redis"  # or "kafka" for production
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    channels:
+      ingestion: "epcid:ingestion"
+      risk: "epcid:risk"
+      alerts: "epcid:alerts"
+      audit: "epcid:audit"
+
+# Storage
+storage:
+  type: "local"  # or "s3" for production
+  local:
+    base_path: "./data"
+    synthetic_path: "./data/synthetic"
+    knowledge_base_path: "./data/knowledge_base"
+    logs_path: "./data/logs"
+    checkpoints_path: "./data/checkpoints"
+    uploads_path: "./data/uploads"
+  s3:
+    bucket: ${S3_BUCKET:epcid-data}
+    region: ${AWS_REGION:us-east-1}
+    access_key: ${AWS_ACCESS_KEY_ID:}
+    secret_key: ${AWS_SECRET_ACCESS_KEY:}
+
+# Monitoring & Observability
+monitoring:
+  metrics:
+    enabled: true
+    provider: "prometheus"
+    port: 9090
+    path: "/metrics"
+  tracing:
+    enabled: true
+    provider: "opentelemetry"
+    endpoint: ${OTEL_ENDPOINT:http://localhost:4317}
+    service_name: "epcid"
+  logging:
+    structured: true
+    format: "json"
+    include_trace_id: true
+
+# Security
+security:
+  encryption:
+    at_rest: true
+    algorithm: "AES-256-GCM"
+    key_rotation_days: 90
+  tls:
+    enabled: true
+    min_version: "1.2"
+  authentication:
+    jwt_secret: ${JWT_SECRET:}
+    jwt_expiry_hours: 24
+    refresh_token_expiry_days: 7
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    burst_size: 20

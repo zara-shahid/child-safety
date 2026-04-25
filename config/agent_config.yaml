@@ -1,0 +1,181 @@
+# EPCID Agent Configuration
+# Early Pediatric Critical Illness Detection Platform
+
+version: "1.0.0"
+
+# Global Agent Settings
+global:
+  max_concurrent_agents: 10
+  default_timeout_seconds: 30
+  retry_policy:
+    max_retries: 3
+    backoff_multiplier: 2
+    initial_delay_ms: 100
+  uncertainty_threshold: 0.15
+  require_explainability: true
+
+# Agent Definitions
+agents:
+  ingestion_agent:
+    enabled: true
+    priority: 1
+    description: "Normalizes and validates multimodal inputs"
+    input_types:
+      - symptoms
+      - vitals
+      - images
+      - voice
+      - environmental
+      - fhir
+    validation:
+      strict_mode: true
+      reject_malformed: true
+      require_timestamp: true
+    rate_limits:
+      requests_per_minute: 60
+      max_payload_mb: 50
+
+  phenotype_agent:
+    enabled: true
+    priority: 2
+    description: "Converts raw data into clinical signals"
+    phenotypes:
+      - weight_loss_velocity
+      - fever_persistence
+      - respiratory_effort_score
+      - fatigue_trend_index
+      - appetite_decline_score
+      - hydration_status
+      - pain_trajectory
+      - sleep_quality_index
+    time_windows:
+      short_term_hours: 24
+      medium_term_days: 7
+      long_term_days: 30
+
+  risk_agent:
+    enabled: true
+    priority: 3
+    description: "Stratifies risk using rules + ML ensemble"
+    risk_tiers:
+      - LOW
+      - MODERATE
+      - HIGH
+      - CRITICAL
+    safety_rules:
+      enabled: true
+      override_ml: true
+      critical_conditions:
+        - cyanosis
+        - severe_dehydration
+        - altered_mental_state
+        - respiratory_distress
+        - unresponsive
+        - seizure
+        - high_fever_infant  # >38°C in <3 months
+    ml_models:
+      tabular: "gradient_boosted_ensemble"
+      time_series: "temporal_transformer"
+      image: "vision_transformer"
+      voice: "audio_cnn"
+    confidence:
+      require_calibration: true
+      min_confidence: 0.7
+      uncertainty_flag_threshold: 0.3
+
+  guideline_rag_agent:
+    enabled: true
+    priority: 4
+    description: "Retrieves validated clinical guidelines"
+    sources:
+      - medlineplus
+      - aap_guidelines
+      - internal_playbooks
+    strict_rules:
+      source_allowlist_only: true
+      require_citation: true
+      no_treatment_instructions: true
+      escalation_language_required: true
+    retrieval:
+      top_k: 5
+      similarity_threshold: 0.75
+      reranking_enabled: true
+
+  medication_safety_agent:
+    enabled: true
+    priority: 5
+    description: "Contextual medication risk awareness"
+    data_sources:
+      - openfda_labels
+      - openfda_adverse_events
+    output_caveats:
+      - "Based on voluntary reporting data"
+      - "Not clinical incidence rates"
+    pediatric_focus: true
+
+  geo_exposure_agent:
+    enabled: true
+    priority: 6
+    description: "Environmental exposure correlation"
+    signals:
+      - aqi
+      - pm25
+      - ozone
+      - temperature
+      - humidity
+      - pollen
+      - uv_index
+    correlation_window_hours: 72
+    alert_thresholds:
+      aqi_unhealthy: 101
+      pm25_sensitive: 35.5
+      temperature_extreme_high_f: 95
+      temperature_extreme_low_f: 32
+
+  escalation_agent:
+    enabled: true
+    priority: 7
+    description: "Workflow automation and care navigation"
+    automations:
+      - visit_preparation_packet
+      - symptom_summary_pdf
+      - attachment_compilation
+      - reminder_workflows
+    integrations:
+      - slack
+      - email
+      - sms
+      - notion
+    escalation_paths:
+      CRITICAL: immediate_emergency
+      HIGH: urgent_care_24h
+      MODERATE: scheduled_visit
+      LOW: home_monitoring
+
+# Agent Communication
+communication:
+  message_bus: "event_driven"
+  protocol: "async"
+  serialization: "json"
+  encryption: true
+
+# Memory Configuration
+memory:
+  type: "hierarchical"
+  short_term:
+    max_items: 100
+    ttl_minutes: 60
+  episodic:
+    max_episodes: 1000
+    compression_enabled: true
+  semantic:
+    vector_db: "chromadb"
+    embedding_model: "all-MiniLM-L6-v2"
+    similarity_metric: "cosine"
+
+# Reasoning Configuration  
+reasoning:
+  chain_of_thought: true
+  self_consistency_samples: 3
+  reflection_enabled: true
+  max_reasoning_steps: 10

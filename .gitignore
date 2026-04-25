@@ -1,0 +1,61 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Next.js
+.next/
+out/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+venv/
+env/
+.env
+
+# Testing artifacts
+test*.js
+test*.ts
+*.png
+!public/*.png
+!assets/*.png
+*report*.json
+*_REPORT.md
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore logs
+*.log
+
+# Unnecessary Markdown & Images
+*.md
+!README.md
+!docs/GOOGLE_CLOUD_PROOF.md
+!frontend/.env.example
+!LICENSE
+tests/ignore/
+temp/
+*.svg
+!frontend/public/icons/*.svg
+!frontend/public/favicon.svg
+*.jpg
+*.jpeg
+
+# Large media files
+*.mp4
+*.pptx
