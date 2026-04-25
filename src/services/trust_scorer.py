@@ -1,73 +1,67 @@
-import datetime
-from typing import Any, Dict
+from typing import Dict, Any, Tuple, List
 
-import pandas as pd
-
-
-def calculate_trust_score(facility: Dict[str, Any]) -> Dict[str, int]:
-    """Calculate Trust Score based on facility attributes."""
+def calculate_trust_score(facility: Dict[str, Any], extracted: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Trust Scorer (Core Requirement).
+    Calculates the Trust Score using strict deduction rules and returns reasoning.
+    """
     score = 100
-
-    # 1. If numberDoctors is missing or 0: -15 points
-    docs = facility.get("numberDoctors")
-    try:
-        if docs is None or float(docs) == 0:
-            score -= 15
-    except (ValueError, TypeError):
+    reasoning: List[str] = []
+    
+    # Missing doctors -> -15
+    if extracted["doctors_available"] == 0:
         score -= 15
-
-    # 2. If capacity missing: -10 points
-    cap = facility.get("capacity")
-    if not cap:
-        score -= 10
-
-    # 3. If equipment empty: -20 points
-    equip = facility.get("equipment")
-    if not equip or str(equip).strip() == "" or str(equip).lower() == "nan":
+        reasoning.append("⚠ Missing doctors (-15)")
+        
+    # Missing ICU data -> -20
+    # Wait, the prompt says "Missing ICU data" not "No ICU". 
+    # If capability exists but doesn't mention ICU, is it missing? We'll assume if ICU is false, it's a deduction for emergency context, 
+    # or if capability string is entirely empty.
+    capability = str(facility.get("capability", "")).strip()
+    if not capability or (not extracted["icu"] and "intensive" not in capability.lower()):
         score -= 20
-
-    # 4. If capability empty: -15 points
-    capab = facility.get("capability")
-    if not capab or str(capab).strip() == "" or str(capab).lower() == "nan":
+        reasoning.append("⚠ Missing ICU data (-20)")
+        
+    # Missing equipment -> -15
+    if not extracted["equipment"]:
         score -= 15
-
-    # 5. If officialWebsite missing: -10 points
-    web = facility.get("officialWebsite")
-    if not web or str(web).strip() == "" or str(web).lower() == "nan":
-        score -= 10
-
-    # 6. If latitude or longitude missing: -25 points
-    lat = facility.get("latitude")
-    lng = facility.get("longitude")
-    if not lat or not lng:
+        reasoning.append("⚠ Incomplete equipment data (-15)")
+        
+    # Surgery capability but no anesthesiologist -> -25
+    if extracted["surgery"] and "anesthesiologist" not in extracted["specialists"]:
         score -= 25
-
-    # 7. If recency_of_page_update older than 3 years: -10 points
-    recency = facility.get("recency_of_page_update")
-    if recency and str(recency).lower() != "nan":
-        try:
-            date_obj = pd.to_datetime(recency)
-            # Compare with current date (naive)
-            now = pd.Timestamp.now()
-            # If date is aware, make now aware
-            if date_obj.tzinfo is not None:
-                now = pd.Timestamp.now(tz=date_obj.tzinfo)
-            if (now - date_obj).days > 3 * 365:
-                score -= 10
-        except Exception:
-            # If we can't parse it, we skip the penalty or apply it? 
-            # We'll skip since rule specifies "older than 3 years".
-            pass
-
-    # 8. If distinct_social_media_presence_count = 0: -5 points
-    social = facility.get("distinct_social_media_presence_count")
-    try:
-        if social is not None and float(social) == 0:
-            score -= 5
-    except (ValueError, TypeError):
-        pass
-
-    # Ensure boundaries
-    score = max(0, min(100, int(score)))
-
-    return {"trust_score": score}
+        reasoning.append("⚠ Surgery capability but missing anesthesiologist (-25)")
+        
+    # Outdated data -> -10
+    # Using recency_of_page_update if it exists, or just checking if yearEstablished is missing/old
+    recency = str(facility.get("recency_of_page_update", ""))
+    if "year" in recency.lower() or not recency:
+        score -= 10
+        reasoning.append("⚠ Outdated data (-10)")
+        
+    # No official website -> -5
+    website = str(facility.get("officialWebsite", "")).strip()
+    if not website or website.lower() == 'nan':
+        score -= 5
+        reasoning.append("⚠ No official website (-5)")
+        
+    # Low completeness of record -> -10
+    # Checking if basic fields are missing
+    completeness = 0
+    if facility.get("phone_numbers"): completeness += 1
+    if facility.get("address_line1"): completeness += 1
+    if facility.get("latitude"): completeness += 1
+    if completeness < 3:
+        score -= 10
+        reasoning.append("⚠ Low completeness of record (-10)")
+        
+    if not reasoning:
+        reasoning.append("✔ Highly verified data")
+        
+    # Score constraints
+    score = max(0, min(100, score))
+    
+    return {
+        "trust_score": score,
+        "reasoning": reasoning
+    }

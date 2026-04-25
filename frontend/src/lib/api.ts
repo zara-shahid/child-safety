@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8090'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
 // Check if we're in demo mode (using a mock token)
 export const isDemoMode = (): boolean => {

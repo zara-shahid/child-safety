@@ -86,3 +86,60 @@ async def search_facilities(
 
     # Return top 20 verified facilities
     return FacilitiesResponse(facilities=verified_results[:20])
+
+
+class RecommendRequest(BaseModel):
+    latitude: float
+    longitude: float
+    medical_need: str
+
+
+class RecommendResponseFacility(BaseModel):
+    name: str
+    distance_km: float
+    trust_score: int
+    reasoning: List[str]
+    capability_match: List[str]
+    latitude: float | None = None
+    longitude: float | None = None
+    city: str | None = None
+
+
+class AIDecisionReport(BaseModel):
+    what_is_safe: str
+    why_safe: str
+    risks_exist: str
+    best_emergency: str
+    human_logic_steps: List[str]
+
+
+class RecommendResponse(BaseModel):
+    recommended_facilities: List[RecommendResponseFacility]
+    ai_decision_report: AIDecisionReport | None = None
+
+
+@router.post("/recommend", response_model=RecommendResponse)
+async def recommend_facilities(
+    req: RecommendRequest,
+) -> RecommendResponse:
+    """
+    Search and rank facilities using the Multi-Attribute Reasoning Engine.
+    """
+    from ...agents.facility_reasoning_agent import FacilityReasoningAgent
+    
+    agent = FacilityReasoningAgent()
+    res = await agent.process({
+        "latitude": req.latitude,
+        "longitude": req.longitude,
+        "medical_need": req.medical_need,
+        "radius": 50.0
+    })
+    
+    data = res.data or {}
+    facilities = data.get("recommended_facilities", [])
+    report = data.get("ai_decision_report")
+    
+    return RecommendResponse(
+        recommended_facilities=facilities,
+        ai_decision_report=report
+    )
