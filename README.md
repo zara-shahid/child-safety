@@ -1,7 +1,7 @@
-# EPCID — Early Pediatric Critical Illness Detection
+# VitalKids — Vital Monitoring for Kids
 
 <div align="center">
-  <img src="frontend/public/icons/icon-512x512.svg" alt="EPCID Logo" width="120" />
+  <img src="frontend/public/icons/icon-512x512.svg" alt="VitalKids Logo" width="120" />
   
   ### **Agentic AI Platform for Pediatric Health Monitoring**
   
@@ -17,7 +17,7 @@
 
 Pediatric critical illness is a silent crisis. Every year, over 75,000 children are admitted to pediatric intensive care units (PICUs) in the US, and many of those cases were preventable. Parents often delay care due to uncertainty, and traditional adult-centric symptom checkers fail to identify critical pediatric conditions.
 
-**EPCID** is an agentic AI platform that bridges the gap between a parent's first concern and a clinician's expert assessment. By leveraging advanced clinical models and a multi-agent backend architecture, EPCID turns every smartphone into an intelligent pediatric triage station.
+**VitalKids** is an agentic AI platform that bridges the gap between a parent's first concern and a clinician's expert assessment. By leveraging advanced clinical models and a multi-agent backend architecture, VitalKids turns every smartphone into an intelligent pediatric triage station.
 
 ---
 
@@ -97,6 +97,6 @@ npm run dev
 ---
 
 ## 🛡️ Safety Disclaimer
-*EPCID is designed for informational and triage assistance purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a healthcare provider for medical emergencies.*
+*VitalKids is designed for informational and triage assistance purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a healthcare provider for medical emergencies.*
 
 Built with ❤️ for the Gemini Live Agent Challenge!

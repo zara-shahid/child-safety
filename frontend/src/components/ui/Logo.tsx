@@ -63,14 +63,14 @@ export function Logo({
     <div className={`flex flex-col ${className}`}>
       {/* Top Row: Logo Text + Pulse Icon */}
       <div className="flex items-center gap-2">
-        {/* EPCID Text */}
+        {/* VitalKids Text */}
         <motion.span
           initial={animate ? { opacity: 0, x: -10 } : false}
           animate={animate ? { opacity: 1, x: 0 } : false}
           transition={{ duration: 0.5 }}
           className={`${config.text} font-black tracking-tight text-surface-900 dark:text-white`}
         >
-          EPCID
+          VitalKids
         </motion.span>
         
         {/* Heart with Pulse Icon - No background box */}
@@ -123,7 +123,7 @@ export function Logo({
           className="mt-0.5"
         >
           <span className={`${config.fullName} text-cyan-600 dark:text-cyan-400 font-medium tracking-wide`}>
-            Early Pediatric Critical Illness Detection
+            Vital Monitoring for Kids
           </span>
         </motion.div>
       )}
@@ -183,11 +183,11 @@ export function LogoCompact({ className = '', showFullName = true }: { className
       {/* Text */}
       <div>
         <span className="text-lg font-bold text-surface-900 dark:text-white block">
-          EPCID
+          VitalKids
         </span>
         {showFullName ? (
           <div className="text-[9px] text-cyan-600 dark:text-cyan-400 font-medium tracking-wide leading-tight max-w-[140px]">
-            Early Pediatric Critical Illness Detection
+            Vital Monitoring for Kids
           </div>
         ) : (
           <div className="flex items-center gap-1 text-[10px] text-surface-500 dark:text-primary-400/70">

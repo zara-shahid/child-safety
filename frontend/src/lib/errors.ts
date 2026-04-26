@@ -1,5 +1,5 @@
 /**
- * Centralized Error Handling for EPCID
+ * Centralized Error Handling for VitalKids
  * 
  * Provides:
  * - Typed error classes
@@ -211,7 +211,7 @@ export interface ErrorLogger {
 
 class ConsoleErrorLogger implements ErrorLogger {
   log(error: AppError, additionalContext?: Record<string, unknown>): void {
-    console.error('[EPCID Error]', {
+    console.error('[VitalKids Error]', {
       ...error.toJSON(),
       ...additionalContext,
     })
@@ -223,11 +223,11 @@ class ConsoleErrorLogger implements ErrorLogger {
   }
 
   logWarning(message: string, context?: Record<string, unknown>): void {
-    console.warn('[EPCID Warning]', message, context)
+    console.warn('[VitalKids Warning]', message, context)
   }
 
   logInfo(message: string, context?: Record<string, unknown>): void {
-    console.info('[EPCID Info]', message, context)
+    console.info('[VitalKids Info]', message, context)
   }
 }
 

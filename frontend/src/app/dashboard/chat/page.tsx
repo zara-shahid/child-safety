@@ -205,7 +205,7 @@ export default function ChatPage() {
       id: '1',
       role: 'assistant',
       content: selectedChild
-        ? `👋 Welcome to **EPCID** - Early Pediatric Critical Illness Detection!
+        ? `👋 Welcome to **VitalKids** - Vital Monitoring for Kids!
 
 I'm your AI-powered pediatric health assistant, here to help you monitor **${selectedChild.name}**'s health and detect early warning signs of illness.
 
@@ -224,7 +224,7 @@ I'm your AI-powered pediatric health assistant, here to help you monitor **${sel
 **Important:** I'm not a doctor and can't diagnose conditions. For emergencies, always seek medical care immediately.
 
 How can I help you today?`
-        : `👋 Welcome to **EPCID** - Early Pediatric Critical Illness Detection!
+        : `👋 Welcome to **VitalKids** - Vital Monitoring for Kids!
 
 I'm your AI-powered pediatric health assistant designed to help parents identify early warning signs of serious illness in children.
 
@@ -652,7 +652,7 @@ Once you've added a child profile, I can help you:
           </div>
           <div>
             <h2 className="font-semibold text-surface-900 dark:text-white flex items-center gap-2">
-              EPCID Assistant
+              VitalKids Assistant
               <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                 Online
@@ -671,7 +671,7 @@ Once you've added a child profile, I can help you:
             <p className="text-sm text-surface-600 dark:text-surface-400">
               {selectedChild 
                 ? `Smart Health Assistant for ${selectedChild.name}` 
-                : 'Early Pediatric Critical Illness Detection'}
+                : 'Vital Monitoring for Kids'}
             </p>
           </div>
         </div>
@@ -968,7 +968,7 @@ Once you've added a child profile, I can help you:
                 <Radio className="w-5 h-5 text-purple-500 dark:text-purple-400 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
                 <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               </div>
-              <span className="text-sm font-medium">Talk to EPCID</span>
+              <span className="text-sm font-medium">Talk to VitalKids</span>
               <span className="text-xs text-surface-500">Gemini Live</span>
             </button>
           </div>
@@ -1053,7 +1053,7 @@ Once you've added a child profile, I can help you:
         )}
 
         <p className="text-xs text-surface-600 dark:text-surface-400 text-center mt-3 px-2">
-          EPCID helps identify early warning signs but is NOT a diagnostic tool. Vitals mentioned are automatically logged. Always consult healthcare professionals. Call 911 for emergencies.
+          VitalKids helps identify early warning signs but is NOT a diagnostic tool. Vitals mentioned are automatically logged. Always consult healthcare professionals. Call 911 for emergencies.
         </p>
       </div>
     </div>

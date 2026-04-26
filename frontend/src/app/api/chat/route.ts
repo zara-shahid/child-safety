@@ -21,8 +21,8 @@ const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
 const RATE_LIMIT = 30 // requests per minute
 const RATE_WINDOW = 60 * 1000 // 1 minute
 
-// Medical system prompt for EPCID
-const PEDIATRIC_SYSTEM_PROMPT = `You are the EPCID Assistant - Early Pediatric Critical Illness Detection AI.
+// Medical system prompt for VitalKids
+const PEDIATRIC_SYSTEM_PROMPT = `You are the VitalKids Assistant - Vital Monitoring for Kids AI.
 
 Your PRIMARY PURPOSE is to help parents identify EARLY WARNING SIGNS of serious illness in children before they become critical. You support, not replace, clinical judgment.
 
@@ -128,8 +128,8 @@ async function chatWithOpenRouter(messages: Message[]): Promise<string> {
     headers: {
       'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
       'Content-Type': 'application/json',
-      'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://epcid.app',
-      'X-Title': 'EPCID Pediatric Health',
+      'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://VitalKids.app',
+      'X-Title': 'VitalKids Pediatric Health',
     },
     body: JSON.stringify({
       model: 'meta-llama/llama-3.2-3b-instruct:free',
@@ -165,7 +165,7 @@ async function chatWithGemini(messages: Message[]): Promise<string> {
     },
     {
       role: 'model' as const,
-      parts: [{ text: 'Understood. I am the EPCID Assistant, ready to help parents detect early warning signs of serious illness in children. I will follow all safety rules and communicate with warmth and clarity. How can I help?' }],
+      parts: [{ text: 'Understood. I am the VitalKids Assistant, ready to help parents detect early warning signs of serious illness in children. I will follow all safety rules and communicate with warmth and clarity. How can I help?' }],
     },
     ...messages.map((msg) => ({
       role: (msg.role === 'assistant' ? 'model' : 'user') as 'user' | 'model',

@@ -64,7 +64,7 @@ export function DemoModeBanner() {
                 <div className="hidden sm:flex items-center gap-2">
                   <Sparkles className="w-4 h-4" />
                   <span className="text-sm">
-                    <strong>EPCID</strong> — Early Pediatric Critical Illness Detection
+                    <strong>VitalKids</strong> — Vital Monitoring for Kids
                   </span>
                 </div>
               </div>

@@ -66,7 +66,7 @@ export default function LoginPage() {
   const loginAsDemo = () => {
     setUser({
       id: 'user-001',
-      email: 'demo@epcid.health',
+      email: 'demo@VitalKids.health',
       full_name: 'Demo User',
     })
     setToken(`demo-token-${Date.now()}`)
@@ -79,7 +79,7 @@ export default function LoginPage() {
     setLoading(true)
 
     // Fast path: demo credentials bypass backend entirely
-    if (email === 'demo@epcid.health') {
+    if (email === 'demo@VitalKids.health') {
       loginAsDemo()
       return
     }
@@ -104,7 +104,7 @@ export default function LoginPage() {
       const message = err?.response?.data?.detail || err?.message || ''
       
       if (message.includes('Incorrect email or password')) {
-        setError('Invalid email or password. Try demo@epcid.health / password123')
+        setError('Invalid email or password. Try demo@VitalKids.health / password123')
       } else {
         // Backend unavailable — fall back to demo mode
         const mockUser = {
@@ -265,7 +265,7 @@ export default function LoginPage() {
                   />
                   <span className="text-sm text-slate-400">Remember me</span>
                 </label>
-                <button type="button" onClick={() => alert('Please contact support@epcid.com to reset your password.')} className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors font-medium">
+                <button type="button" onClick={() => alert('Please contact support@VitalKids.com to reset your password.')} className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors font-medium">
                   Forgot password?
                 </button>
               </div>

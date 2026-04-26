@@ -1140,7 +1140,7 @@ export default function DashboardPage() {
           <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-primary-400/20 to-primary-600/20 dark:from-primary-400/10 dark:to-primary-600/10 flex items-center justify-center border border-primary-500/20">
             <Plus className="w-12 h-12 text-primary-500" />
           </div>
-          <h2 className="text-2xl font-bold text-surface-900 dark:text-white mb-3">Welcome to EPCID</h2>
+          <h2 className="text-2xl font-bold text-surface-900 dark:text-white mb-3">Welcome to VitalKids</h2>
           <p className="text-surface-600 dark:text-surface-400 mb-8">
             Start monitoring your child's health by adding their profile.
           </p>

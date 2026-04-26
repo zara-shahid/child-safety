@@ -1,5 +1,5 @@
 /**
- * Push Notification Service for EPCID
+ * Push Notification Service for VitalKids
  * 
  * Handles:
  * - Service worker registration

@@ -149,12 +149,12 @@ const mockLocations: CareLocation[] = [
   },
   {
     id: 'tele-1',
-    name: 'EPCID Tele-Consult (India)',
+    name: 'VitalKids Tele-Consult (India)',
     type: 'telehealth',
     address: 'Virtual Visit',
     distance: '--',
     distanceMiles: 0,
-    phone: '1800-EPCID-IN',
+    phone: '1800-VitalKids-IN',
     hours: 'Available 24/7',
     isOpen: true,
     rating: 4.6,
@@ -775,7 +775,7 @@ export default function FindCarePage() {
               <span className="text-green-500">✔</span> What hospitals are safe
             </h4>
             <p className="text-sm text-surface-600 dark:text-surface-400">
-              {apiReport?.what_is_safe || latestAssessment?.ai_decision_report?.what_is_safe || "Madina Teaching Hospital, EPCID Tele-Consult"}
+              {apiReport?.what_is_safe || latestAssessment?.ai_decision_report?.what_is_safe || "Madina Teaching Hospital, VitalKids Tele-Consult"}
             </p>
           </div>
 

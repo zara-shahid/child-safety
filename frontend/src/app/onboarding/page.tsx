@@ -221,7 +221,7 @@ export default function OnboardingPage() {
                     <Shield className="w-12 h-12 text-white" />
                   </div>
                   <h1 className="text-3xl font-bold text-surface-900 dark:text-white mb-4">
-                    Welcome to EPCID
+                    Welcome to VitalKids
                   </h1>
                   <p className="text-lg text-surface-600 dark:text-surface-400 mb-8 max-w-md mx-auto">
                     Let's set up your child's health profile so we can provide personalized care guidance.

@@ -973,7 +973,7 @@ export const useStore = create<AppState>()(
       }),
     }),
     {
-      name: 'epcid-storage',
+      name: 'VitalKids-storage',
 
       partialize: (state: any) => ({
         token: state.token,

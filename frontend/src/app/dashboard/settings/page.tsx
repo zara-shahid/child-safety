@@ -226,7 +226,7 @@ export default function SettingsPage() {
                 <CardContent className="space-y-4">
                   {[
                     { key: 'share_with_doctor', label: 'Share with Healthcare Providers', desc: 'Allow doctors to access your health data' },
-                    { key: 'anonymous_data', label: 'Contribute Anonymous Data', desc: 'Help improve EPCID with anonymized health data' },
+                    { key: 'anonymous_data', label: 'Contribute Anonymous Data', desc: 'Help improve VitalKids with anonymized health data' },
                     { key: 'location_services', label: 'Location Services', desc: 'Enable for nearby care facilities and local health alerts' },
                   ].map((item) => (
                     <div
@@ -252,7 +252,7 @@ export default function SettingsPage() {
                   <div className="mt-6 p-4 rounded-xl bg-surface-100 dark:bg-surface-800/50 border border-surface-200 dark:border-surface-700">
                     <h4 className="font-medium text-surface-900 dark:text-white mb-2">Data Management</h4>
                     <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
-                      Download or delete your personal data from EPCID.
+                      Download or delete your personal data from VitalKids.
                     </p>
                     <div className="flex gap-3">
                       <Button variant="secondary" size="sm">

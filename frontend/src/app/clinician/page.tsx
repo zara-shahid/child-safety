@@ -533,7 +533,7 @@ export default function ClinicianDashboard() {
       {/* Footer */}
       <div className="border-t border-gray-800 mt-8">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between text-sm text-gray-500">
-          <span>EPCID Clinician Portal v1.0 • HIPAA Compliant</span>
+          <span>VitalKids Clinician Portal v1.0 • HIPAA Compliant</span>
           <span>Handoff ID: {selectedHandoff.handoff_id}</span>
         </div>
       </div>

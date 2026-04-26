@@ -160,7 +160,7 @@ export default function DashboardLayout({
       if (isDemoMode()) {
         setUser({
           id: 'demo-user',
-          email: 'demo@epcid.health',
+          email: 'demo@VitalKids.health',
           full_name: 'Demo User',
         })
         setLoading(false)
@@ -181,7 +181,7 @@ export default function DashboardLayout({
       } catch (error) {
         setUser({
           id: 'demo-user',
-          email: 'demo@epcid.health',
+          email: 'demo@VitalKids.health',
           full_name: 'Demo User',
         })
         if (childrenList.length === 0) {
@@ -235,7 +235,7 @@ export default function DashboardLayout({
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-primary-600 dark:text-primary-400">
                 <div className="w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-400 animate-pulse" />
-                <span className="font-medium">EPCID Safety Net</span>
+                <span className="font-medium">VitalKids Safety Net</span>
               </div>
               <div className="hidden sm:flex items-center gap-2 text-surface-600 dark:text-surface-400">
                 <Clock className="w-3.5 h-3.5" />

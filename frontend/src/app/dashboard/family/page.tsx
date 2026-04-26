@@ -344,7 +344,7 @@ export default function FamilyPage() {
   }
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText('https://epcid.app/invite/abc123xyz')
+    navigator.clipboard.writeText('https://VitalKids.app/invite/abc123xyz')
     setLinkCopied(true)
     setTimeout(() => setLinkCopied(false), 2000)
   }
@@ -1240,7 +1240,7 @@ export default function FamilyPage() {
                     <input
                       type="text"
                       readOnly
-                      value="https://epcid.app/invite/abc123xyz"
+                      value="https://VitalKids.app/invite/abc123xyz"
                       className="flex-1 px-4 py-3 rounded-xl bg-surface-50 dark:bg-surface-800 border border-surface-200 dark:border-surface-700 text-sm"
                     />
                     <Button

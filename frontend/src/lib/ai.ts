@@ -1,5 +1,5 @@
 /**
- * AI Service for EPCID - Client-side interface
+ * AI Service for VitalKids - Client-side interface
  * 
  * SECURITY: All AI API calls are now proxied through server-side API routes
  * to keep API keys secure. This file only contains the client interface.

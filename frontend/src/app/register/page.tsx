@@ -278,9 +278,9 @@ export default function RegisterPage() {
                 />
                 <span className="text-sm text-slate-400">
                   I agree to the{' '}
-                  <button type="button" onClick={() => alert('EPCID Terms of Service: By using this application, you agree to our terms. This is a demo application. Data is not stored permanently.')} className="text-cyan-400 hover:text-cyan-300 font-medium">Terms of Service</button>
+                  <button type="button" onClick={() => alert('VitalKids Terms of Service: By using this application, you agree to our terms. This is a demo application. Data is not stored permanently.')} className="text-cyan-400 hover:text-cyan-300 font-medium">Terms of Service</button>
                   {' '}and{' '}
-                  <button type="button" onClick={() => alert('EPCID Privacy Policy: We take your privacy seriously. All health data is encrypted and HIPAA-compliant. This demo does not collect real patient data.')} className="text-cyan-400 hover:text-cyan-300 font-medium">Privacy Policy</button>
+                  <button type="button" onClick={() => alert('VitalKids Privacy Policy: We take your privacy seriously. All health data is encrypted and HIPAA-compliant. This demo does not collect real patient data.')} className="text-cyan-400 hover:text-cyan-300 font-medium">Privacy Policy</button>
                 </span>
               </div>
 

@@ -1,5 +1,5 @@
 /**
- * Shared utility functions for EPCID app
+ * Shared utility functions for VitalKids app
  * CRITICAL: Use these utilities for consistent calculations across the app
  */
 

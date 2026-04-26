@@ -81,7 +81,7 @@ const SUPPORT_CATEGORIES = [
   { id: 'howto', label: 'How To Question', icon: Lightbulb, description: 'Learn how to use a feature', route: 'ai' },
   { id: 'medical', label: 'Medical Question', icon: Stethoscope, description: 'Questions about health guidance', route: 'ai' },
   { id: 'account', label: 'Account/Billing', icon: Users, description: 'Login, subscription, or profile issues', route: 'email' },
-  { id: 'feedback', label: 'Feedback/Suggestion', icon: MessageSquare, description: 'Ideas to improve EPCID', route: 'email' },
+  { id: 'feedback', label: 'Feedback/Suggestion', icon: MessageSquare, description: 'Ideas to improve VitalKids', route: 'email' },
 ]
 
 interface FAQItem {
@@ -102,8 +102,8 @@ interface FeatureGuide {
 
 const faqs: FAQItem[] = [
   {
-    question: 'How is EPCID better than a Google search?',
-    answer: `EPCID offers several advantages over searching symptoms online:
+    question: 'How is VitalKids better than a Google search?',
+    answer: `VitalKids offers several advantages over searching symptoms online:
 
 • **Personalized**: Knows your child's age, weight, medical conditions, and allergies - Google gives generic results for everyone
 • **Age-Aware**: Understands that fever in a 2-month-old is very different from a 5-year-old
@@ -114,12 +114,12 @@ const faqs: FAQItem[] = [
 • **No Doom Scrolling**: Answers THE question parents have: "Is this serious?"`,
   },
   {
-    question: 'Is EPCID a replacement for medical advice?',
-    answer: 'No. EPCID is a clinical decision support tool designed to help you understand when to seek medical care. It is NOT a diagnostic tool and does NOT replace professional medical judgment. Always consult with a healthcare provider for medical concerns, and seek emergency care immediately for serious symptoms.',
+    question: 'Is VitalKids a replacement for medical advice?',
+    answer: 'No. VitalKids is a clinical decision support tool designed to help you understand when to seek medical care. It is NOT a diagnostic tool and does NOT replace professional medical judgment. Always consult with a healthcare provider for medical concerns, and seek emergency care immediately for serious symptoms.',
   },
   {
-    question: 'What makes EPCID\'s AI different?',
-    answer: `EPCID uses AI specifically trained for pediatric health concerns:
+    question: 'What makes VitalKids\'s AI different?',
+    answer: `VitalKids uses AI specifically trained for pediatric health concerns:
 
 • **Early Warning Focus**: Designed to detect early signs of serious illness BEFORE they become critical
 • **Pediatric-Specific**: Understands age-appropriate vital signs, dosing, and symptoms
@@ -145,7 +145,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: 'What should I do if the app recommends seeking emergency care?',
-    answer: 'If EPCID displays a "Seek Emergency Care" recommendation, it has detected critical warning signs. Trust this guidance and go to the nearest hospital immediately. Do not wait. The app identifies life-threatening conditions like signs of sepsis, respiratory distress, or altered consciousness.',
+    answer: 'If VitalKids displays a "Seek Emergency Care" recommendation, it has detected critical warning signs. Trust this guidance and go to the nearest hospital immediately. Do not wait. The app identifies life-threatening conditions like signs of sepsis, respiratory distress, or altered consciousness.',
   },
   {
     question: 'How often should I log symptoms?',
@@ -156,12 +156,12 @@ const faqs: FAQItem[] = [
     answer: 'Yes. All data is stored securely in our PostgreSQL database with regular automated backups. Your data is never lost, even if you uninstall and reinstall the app.',
   },
   {
-    question: 'Can I use EPCID offline?',
+    question: 'Can I use VitalKids offline?',
     answer: 'Basic features work offline, but AI chat and real-time analysis require an internet connection. Your logged symptoms and child profiles are stored locally and will sync when you\'re back online.',
   },
   {
-    question: 'What age range does EPCID support?',
-    answer: 'EPCID is designed for children from newborn to 18 years old. Age-appropriate calculations, vital sign ranges, and medication dosing are automatically adjusted based on your child\'s age and weight.',
+    question: 'What age range does VitalKids support?',
+    answer: 'VitalKids is designed for children from newborn to 18 years old. Age-appropriate calculations, vital sign ranges, and medication dosing are automatically adjusted based on your child\'s age and weight.',
   },
 ]
 
@@ -418,7 +418,7 @@ export default function HelpPage() {
             Help Center
           </h1>
           <p className="text-surface-600 dark:text-surface-400 mt-1">
-            Learn how to use EPCID to monitor your child's health
+            Learn how to use VitalKids to monitor your child's health
           </p>
         </div>
         <Link href="/dashboard/chat">
@@ -630,7 +630,7 @@ export default function HelpPage() {
           <div>
             <h3 className="font-semibold text-amber-800 dark:text-amber-200">Important Disclaimer</h3>
             <p className="text-amber-700 dark:text-amber-300 text-sm mt-1">
-              EPCID is a <strong>clinical decision support tool</strong>, not a diagnostic system. 
+              VitalKids is a <strong>clinical decision support tool</strong>, not a diagnostic system. 
               It provides guidance to help you understand when to seek care, but it does <strong>not</strong> replace 
               professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare 
               provider for any medical concerns.
@@ -949,7 +949,7 @@ export default function HelpPage() {
                       Email Support
                     </h4>
                     <p className="text-sm text-surface-500 mt-1">
-                      support@epcid.health
+                      support@VitalKids.health
                     </p>
                     <p className="text-xs text-surface-600 dark:text-surface-400 mt-1">
                       Response within 24 hours
@@ -968,7 +968,7 @@ export default function HelpPage() {
                       Phone Support
                     </h4>
                     <p className="text-sm text-surface-500 mt-1">
-                      1-800-EPCID-HELP
+                      1-800-VitalKids-HELP
                     </p>
                     <p className="text-xs text-surface-600 dark:text-surface-400 mt-1">
                       Mon-Fri, 9am-5pm EST

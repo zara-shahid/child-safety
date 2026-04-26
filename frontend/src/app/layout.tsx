@@ -11,7 +11,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'EPCID | Early Pediatric Critical Illness Detection',
+  title: 'VitalKids | Vital Monitoring for Kids',
   description: 'AI-powered pediatric health monitoring and early illness detection for caregivers',
   keywords: ['pediatric', 'health', 'AI', 'illness detection', 'children', 'monitoring'],
   authors: [{ name: 'Ayesha-Ali676' }],
@@ -23,10 +23,10 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'EPCID',
+    title: 'VitalKids',
   },
   openGraph: {
-    title: 'EPCID | Early Pediatric Critical Illness Detection',
+    title: 'VitalKids | Vital Monitoring for Kids',
     description: 'AI-powered pediatric health monitoring for caregivers',
     type: 'website',
   },
