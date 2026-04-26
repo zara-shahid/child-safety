@@ -77,6 +77,22 @@ class FacilityReasoningAgent(BaseAgent):
                         fac["distance_km"] = 999
                     nearby_facilities.append(fac)
                     
+        # Fallback 2: If still no hospitals (e.g., user is physically outside India), return top 10 closest globally
+        if len(nearby_facilities) == 0:
+            logger.info("Still found 0 results. User might be outside India. Returning top 10 globally closest.")
+            for fac in all_facilities:
+                fac_lat = fac.get("latitude")
+                fac_lon = fac.get("longitude")
+                if fac_lat and fac_lon:
+                    try:
+                        dist = calculate_distance(user_lat, user_lon, float(fac_lat), float(fac_lon))
+                        fac["distance_km"] = round(dist, 2)
+                        nearby_facilities.append(fac)
+                    except (ValueError, TypeError):
+                        pass
+            nearby_facilities.sort(key=lambda x: x["distance_km"])
+            nearby_facilities = nearby_facilities[:10]
+
         # 3. Extract, Compute, Rank
         recommended = []
         for fac in nearby_facilities:
