@@ -451,6 +451,49 @@ export default function FindCarePage() {
   // Get the top recommendation
   const topRecommendation = filteredLocations.find(loc => loc.recommended)
 
+  // Dynamically derive AI Decision Engine content from real API data
+  const derivedReport = useMemo(() => {
+    if (apiFacilities.length === 0) return null
+
+    const safeHospitals = apiFacilities.filter(f => f.trust_score >= 80)
+    const riskyHospitals = apiFacilities.filter(f => f.trust_score < 70)
+
+    const safeNames = safeHospitals.slice(0, 3).map(f => f.name).join(', ') || 'No fully verified facilities nearby'
+
+    // Collect unique risk warnings across all facilities
+    const allRisks = new Set<string>()
+    apiFacilities.slice(0, 10).forEach(f => {
+      (f.reasoning || []).forEach((r: string) => {
+        if (r.includes('⚠')) allRisks.add(r.replace('⚠ ', '').split(' (-')[0])
+      })
+    })
+    const risksText = allRisks.size > 0
+      ? Array.from(allRisks).slice(0, 3).join(', ')
+      : 'Minimal risks detected in top facilities.'
+
+    // Best emergency: highest trust_score with emergency capability
+    const bestEmergency = apiFacilities.find(f =>
+      (f.capability_match || []).some((c: string) => c.toLowerCase().includes('emergency')) &&
+      f.trust_score >= 70
+    ) || apiFacilities[0]
+
+    const whySafe = safeHospitals.length > 0
+      ? `${safeHospitals.length} facilities verified with Trust Score ≥80, no critical contradictions found in staff/equipment data.`
+      : 'Trust score analysis complete — review individual scores before proceeding.'
+
+    return {
+      what_is_safe: safeNames,
+      why_safe: whySafe,
+      risks_exist: riskyHospitals.length > 0
+        ? `${riskyHospitals.length} facilities flagged: ${risksText}`
+        : risksText,
+      best_emergency: bestEmergency
+        ? `${bestEmergency.name} (Score: ${bestEmergency.trust_score}/100, Dist: ${bestEmergency.distance_km}km)`
+        : 'No fully verified emergency facility nearby.',
+      human_logic_steps: apiReport?.human_logic_steps || []
+    }
+  }, [apiFacilities, apiReport])
+
   const handleGetDirections = (location: CareLocation) => {
     const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.address)}`
     window.open(url, '_blank')
@@ -764,60 +807,75 @@ export default function FindCarePage() {
               AI Healthcare Decision Engine
             </h2>
             <p className="text-sm text-cyan-700 dark:text-cyan-300">
-              {isFetchingAI ? "Analyzing 10,000+ unstructured Indian healthcare records..." : "Synthesized insights based on your medical intent"}
+              {isFetchingAI
+                ? "Analyzing 10,000+ Indian healthcare records..."
+                : derivedReport
+                  ? `Based on ${apiFacilities.length} facilities near ${activeRegion || 'your location'}`
+                  : "Select a location to get AI-powered recommendations"}
             </p>
           </div>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
-            <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
-              <span className="text-green-500">✔</span> What hospitals are safe
-            </h4>
-            <p className="text-sm text-surface-600 dark:text-surface-400">
-              {apiReport?.what_is_safe || latestAssessment?.ai_decision_report?.what_is_safe || "Madina Teaching Hospital, VitalKids Tele-Consult"}
-            </p>
+        {!derivedReport && !isFetchingAI && (
+          <div className="text-center py-6 text-cyan-700 dark:text-cyan-300 text-sm">
+            👆 Click <strong>🇮🇳 Test Rural Bihar</strong> or <strong>🏙 New Delhi</strong> or <strong>Use My Location</strong> to get real AI insights from the Indian hospital dataset.
           </div>
+        )}
 
-          <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
-            <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
-              <span className="text-green-500">✔</span> Why they are safe
-            </h4>
-            <p className="text-sm text-surface-600 dark:text-surface-400">
-              {apiReport?.why_safe || latestAssessment?.ai_decision_report?.why_safe || "These facilities have high Trust Scores (>80) with verified capabilities and no critical medical contradictions."}
-            </p>
-          </div>
+        {(derivedReport || isFetchingAI) && (
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
+              <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
+                <span className="text-green-500">✔</span> What hospitals are safe
+              </h4>
+              <p className="text-sm text-surface-600 dark:text-surface-400">
+                {isFetchingAI ? '...' : derivedReport?.what_is_safe}
+              </p>
+            </div>
 
-          <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
-            <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
-              <span className="text-red-500">⚠</span> What risks exist
-            </h4>
-            <p className="text-sm text-surface-600 dark:text-surface-400">
-              {apiReport?.risks_exist || latestAssessment?.ai_decision_report?.risks_exist || "Missing doctors, Incomplete equipment data"}
-            </p>
-          </div>
+            <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
+              <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
+                <span className="text-green-500">✔</span> Why they are safe
+              </h4>
+              <p className="text-sm text-surface-600 dark:text-surface-400">
+                {isFetchingAI ? '...' : derivedReport?.why_safe}
+              </p>
+            </div>
 
-          <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
-            <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
-              <span className="text-blue-500">👉</span> Best for emergency care
-            </h4>
-            <p className="text-sm text-surface-600 dark:text-surface-400">
-              {apiReport?.best_emergency || latestAssessment?.ai_decision_report?.best_emergency || "Madina Teaching Hospital (Score: 95/100, Dist: 4.2km)"}
-            </p>
+            <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
+              <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
+                <span className="text-red-500">⚠</span> What risks exist
+              </h4>
+              <p className="text-sm text-surface-600 dark:text-surface-400">
+                {isFetchingAI ? '...' : derivedReport?.risks_exist}
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
+              <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
+                <span className="text-blue-500">👉</span> Best for emergency care
+              </h4>
+              <p className="text-sm text-surface-600 dark:text-surface-400">
+                {isFetchingAI ? '...' : derivedReport?.best_emergency}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Human Logic Steps */}
         <div className="mt-4 pt-3 border-t border-cyan-200 dark:border-cyan-800/50">
           <p className="text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-2">AI Reasoning Trace (Step-by-Step):</p>
           <div className="flex flex-wrap gap-2 text-xs text-cyan-700 dark:text-cyan-300">
-            {(latestAssessment?.ai_decision_report?.human_logic_steps || [
-              "Step 1: Parsed user intent",
-              "Step 2: Scanned radius for proximity",
-              "Step 3: Extracted unstructured medical capabilities",
-              "Step 4: Evaluated missing staff (Contradiction Check)",
-              "Step 5: Ranked by Trust Score"
-            ]).map((step: string, idx: number) => (
+            {(derivedReport?.human_logic_steps?.length > 0
+              ? derivedReport.human_logic_steps
+              : [
+                "Step 1: Parsed user intent",
+                "Step 2: Scanned radius for proximity",
+                "Step 3: Extracted unstructured medical capabilities",
+                "Step 4: Evaluated missing staff (Contradiction Check)",
+                "Step 5: Ranked by Trust Score"
+              ]
+            ).map((step: string, idx: number) => (
               <span key={idx} className="bg-cyan-100 dark:bg-cyan-900/40 px-2 py-1 rounded border border-cyan-200 dark:border-cyan-800">{step}</span>
             ))}
           </div>

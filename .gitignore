@@ -23,7 +23,8 @@ htmlcov/
 venv/
 env/
 .env
-
+.env.local
+frontend/.env.local
 # Testing artifacts
 test*.js
 test*.ts

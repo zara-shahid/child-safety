@@ -118,6 +118,12 @@ export default function DashboardLayout({
   const [loading, setLoading] = useState(true)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [readNotificationIds, setReadNotificationIds] = useState<Set<string>>(new Set())
+  const [mounted, setMounted] = useState(false)
+
+  // Prevent hydration mismatch: don't render until client-side mount
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const seedDemoData = () => {
     setChildren(DEMO_CHILDREN)
@@ -205,6 +211,14 @@ export default function DashboardLayout({
     if (typeof window !== 'undefined') {
       window.open('https://www.google.com/maps/search/urgent+care+near+me', '_blank')
     }
+  }
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+      </div>
+    )
   }
 
   if (loading) {
