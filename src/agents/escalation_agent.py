@@ -108,7 +108,6 @@ class EscalationAgent(BaseAgent):
             preparation_steps=[
                 "Note child's current condition",
                 "Gather any medications child is taking",
-                "Have ID and insurance information ready",
             ],
         ),
         RISK_HIGH: EscalationPath(
@@ -125,7 +124,6 @@ class EscalationAgent(BaseAgent):
                 "Prepare symptom summary",
                 "Note when symptoms started",
                 "List all medications and doses",
-                "Bring insurance information",
             ],
         ),
         RISK_MODERATE: EscalationPath(

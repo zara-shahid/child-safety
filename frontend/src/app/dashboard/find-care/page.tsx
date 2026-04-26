@@ -47,25 +47,12 @@ interface CareLocation {
   waitTimeVerified?: boolean // NEW: Is wait time live data?
   acceptsWalkIns: boolean
   coordinates: { lat: number; lng: number }
-  insuranceAccepted: string[] // NEW: List of accepted insurance
-  inNetwork?: boolean // NEW: Calculated based on child's insurance
   recommended?: boolean // NEW: Triage-driven recommendation
   recommendationReason?: string
   trustScore?: number // NEW: Facility Verification System Trust Score
   flags?: string[] // NEW: Contradiction flags from FacilityVerificationAgent
 }
 
-// Insurance providers list (updated for Pakistan)
-const INSURANCE_PROVIDERS = [
-  'State Life Insurance',
-  'Jubilee Life Insurance',
-  'EFU General',
-  'Adamjee Insurance',
-  'Allianz EFU',
-  'BlueCross BlueShield',
-  'Aetna',
-  'UnitedHealthcare',
-]
 
 const mockLocations: CareLocation[] = [
   {
@@ -83,7 +70,6 @@ const mockLocations: CareLocation[] = [
     waitTimeVerified: true,
     acceptsWalkIns: true,
     coordinates: { lat: 31.4398, lng: 73.0694 },
-    insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'EFU General', 'Adamjee Insurance'],
   },
   {
     id: 'fsd-2',
@@ -100,7 +86,6 @@ const mockLocations: CareLocation[] = [
     waitTimeVerified: true,
     acceptsWalkIns: true,
     coordinates: { lat: 31.4285, lng: 73.0782 },
-    insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'EFU General', 'Adamjee Insurance'],
   },
   {
     id: 'fsd-3',
@@ -117,7 +102,6 @@ const mockLocations: CareLocation[] = [
     waitTimeVerified: true,
     acceptsWalkIns: true,
     coordinates: { lat: 31.4168, lng: 73.0768 },
-    insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'EFU General'],
   },
   {
     id: 'khi-1',
@@ -134,7 +118,6 @@ const mockLocations: CareLocation[] = [
     waitTimeVerified: true,
     acceptsWalkIns: true,
     coordinates: { lat: 24.8923, lng: 67.0747 },
-    insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'EFU General', 'Adamjee Insurance', 'Allianz EFU'],
   },
   {
     id: 'lhr-1',
@@ -151,7 +134,6 @@ const mockLocations: CareLocation[] = [
     waitTimeVerified: true,
     acceptsWalkIns: true,
     coordinates: { lat: 31.4828, lng: 74.3435 },
-    insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'EFU General', 'Adamjee Insurance'],
   },
   {
     id: 'fsd-4',
@@ -166,7 +148,6 @@ const mockLocations: CareLocation[] = [
     rating: 4.5,
     acceptsWalkIns: false,
     coordinates: { lat: 31.4550, lng: 73.1119 },
-    insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'Adamjee Insurance'],
   },
   {
     id: 'fsd-5',
@@ -181,7 +162,6 @@ const mockLocations: CareLocation[] = [
     rating: 4.3,
     acceptsWalkIns: true,
     coordinates: { lat: 31.4284, lng: 73.1256 },
-    insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'EFU General', 'Adamjee Insurance'],
   },
   {
     id: 'tele-1',
@@ -198,7 +178,6 @@ const mockLocations: CareLocation[] = [
     waitTimeVerified: true,
     acceptsWalkIns: true,
     coordinates: { lat: 0, lng: 0 },
-    insuranceAccepted: ['Jubilee Life Insurance', 'EFU General', 'State Life Insurance'],
   },
 ]
 
@@ -260,8 +239,6 @@ export default function FindCarePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedLocation, setSelectedLocation] = useState<CareLocation | null>(null)
   const [isLocating, setIsLocating] = useState(false)
-  const [showInNetworkOnly, setShowInNetworkOnly] = useState(false)
-  const [childInsurance, setChildInsurance] = useState<string>('State Life Insurance')
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [locationError, setLocationError] = useState<string | null>(null)
   
@@ -387,7 +364,6 @@ export default function FindCarePage() {
             rating: f.trust_score >= 80 ? 4.8 : 3.5,
             acceptsWalkIns: true,
             coordinates: { lat: f.latitude || 0, lng: f.longitude || 0 },
-            insuranceAccepted: ['State Life Insurance', 'Jubilee Life Insurance', 'EFU General', 'Adamjee Insurance'],
             trustScore: f.trust_score,
             reasoning: f.reasoning,
             capability_match: f.capability_match,
@@ -397,7 +373,6 @@ export default function FindCarePage() {
       : mockLocations;
 
     return baseLocations.map(loc => {
-      const inNetwork = loc.insuranceAccepted.includes(childInsurance)
       
       // Calculate dynamic distance if user location is available and it's not an API location (API already returns distance)
       let displayDistance = loc.distance
@@ -457,7 +432,6 @@ export default function FindCarePage() {
         ...loc,
         distance: displayDistance,
         distanceMiles: distanceValue,
-        inNetwork,
         recommended,
         recommendationReason,
         trustScore,
@@ -465,14 +439,13 @@ export default function FindCarePage() {
         capability_match
       }
     })
-  }, [childInsurance, healthAcuity, userLocation, latestAssessment])
+  }, [healthAcuity, userLocation, latestAssessment])
   
   // Filter and sort locations
   const filteredLocations = useMemo(() => {
     let filtered = enhancedLocations.filter(loc => {
       if (selectedType && loc.type !== selectedType) return false
       if (searchQuery && !loc.name.toLowerCase().includes(searchQuery.toLowerCase())) return false
-      if (showInNetworkOnly && !loc.inNetwork) return false
       if (!loc.isOpen) return false // Only show open locations
       return true
     })
@@ -483,16 +456,12 @@ export default function FindCarePage() {
       if (a.recommended && !b.recommended) return -1
       if (!a.recommended && b.recommended) return 1
       
-      // Then in-network locations
-      if (a.inNetwork && !b.inNetwork) return -1
-      if (!a.inNetwork && b.inNetwork) return 1
-      
       // Then by distance
       return a.distanceMiles - b.distanceMiles
     })
     
     return filtered
-  }, [enhancedLocations, selectedType, searchQuery, showInNetworkOnly])
+  }, [enhancedLocations, selectedType, searchQuery])
   
   // Get the top recommendation
   const topRecommendation = filteredLocations.find(loc => loc.recommended)
@@ -684,43 +653,6 @@ export default function FindCarePage() {
           </Button>
         </div>
       </div>
-      
-      {/* Insurance Filter */}
-      <Card className="bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Shield className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-            <div>
-              <h4 className="font-semibold text-emerald-800 dark:text-emerald-200">Insurance Filter</h4>
-              <p className="text-sm text-emerald-700 dark:text-emerald-300">
-                Showing facilities that accept your insurance
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <select
-              value={childInsurance}
-              onChange={(e) => setChildInsurance(e.target.value)}
-              className="px-3 py-2 rounded-lg bg-white dark:bg-surface-800 border border-emerald-300 dark:border-emerald-700 text-sm"
-            >
-              {INSURANCE_PROVIDERS.map(ins => (
-                <option key={ins} value={ins}>{ins}</option>
-              ))}
-            </select>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={showInNetworkOnly}
-                onChange={(e) => setShowInNetworkOnly(e.target.checked)}
-                className="w-4 h-4 rounded text-emerald-600"
-              />
-              <span className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
-                In-Network Only
-              </span>
-            </label>
-          </div>
-        </div>
-      </Card>
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
@@ -922,12 +854,6 @@ export default function FindCarePage() {
           <h2 className="text-lg font-bold text-surface-900 dark:text-white">
             Nearby Locations ({filteredLocations.length})
           </h2>
-          {showInNetworkOnly && (
-            <Badge variant="success" size="sm">
-              <CheckCircle className="w-3 h-3 mr-1" />
-              Showing In-Network Only
-            </Badge>
-          )}
         </div>
         
         {filteredLocations.map((location, i) => {
@@ -968,18 +894,6 @@ export default function FindCarePage() {
                           <Badge variant={location.isOpen ? 'success' : 'danger'} size="sm">
                             {location.isOpen ? 'Open' : 'Closed'}
                           </Badge>
-                          {/* Insurance Badge */}
-                          {location.inNetwork ? (
-                            <Badge variant="success" size="sm">
-                              <CheckCircle className="w-3 h-3 mr-1" />
-                              In-Network
-                            </Badge>
-                          ) : (
-                            <Badge variant="warning" size="sm">
-                              <DollarSign className="w-3 h-3 mr-1" />
-                              Out-of-Network
-                            </Badge>
-                          )}
                         </div>
                         
                         {/* Trust Score & AI Reasoning */}
@@ -1113,20 +1027,8 @@ export default function FindCarePage() {
             <MapPin className="w-16 h-16 text-surface-600 dark:text-surface-300 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-surface-900 dark:text-white mb-2">No Locations Found</h3>
             <p className="text-surface-600 dark:text-surface-400">
-              {showInNetworkOnly 
-                ? 'No in-network locations found. Try disabling the "In-Network Only" filter.'
-                : 'Try adjusting your filters or search query'
-              }
+              'Try adjusting your filters or search query'
             </p>
-            {showInNetworkOnly && (
-              <Button 
-                variant="secondary" 
-                className="mt-4"
-                onClick={() => setShowInNetworkOnly(false)}
-              >
-                Show All Locations
-              </Button>
-            )}
           </Card>
         )}
       </div>
@@ -1164,17 +1066,6 @@ export default function FindCarePage() {
                           <Badge variant={selectedLocation.isOpen ? 'success' : 'danger'} size="sm">
                             {selectedLocation.isOpen ? 'Open Now' : 'Closed'}
                           </Badge>
-                          {selectedLocation.inNetwork ? (
-                            <Badge variant="success" size="sm">
-                              <CheckCircle className="w-3 h-3 mr-1" />
-                              In-Network
-                            </Badge>
-                          ) : (
-                            <Badge variant="warning" size="sm">
-                              <DollarSign className="w-3 h-3 mr-1" />
-                              Out-of-Network
-                            </Badge>
-                          )}
                         </div>
                       </div>
                     </div>
@@ -1213,13 +1104,6 @@ export default function FindCarePage() {
                       <Star className="w-5 h-5 text-amber-400" />
                       <span className="text-surface-700 dark:text-surface-300">{selectedLocation.rating} rating</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Shield className="w-5 h-5 text-surface-600 dark:text-surface-400" />
-                      <span className="text-surface-700 dark:text-surface-300">
-                        Accepts: {selectedLocation.insuranceAccepted.slice(0, 3).join(', ')}
-                        {selectedLocation.insuranceAccepted.length > 3 && ` +${selectedLocation.insuranceAccepted.length - 3} more`}
-                      </span>
-                    </div>
                   </div>
 
                   {selectedLocation.waitTime && (
@@ -1247,21 +1131,6 @@ export default function FindCarePage() {
                           Updated 2 min ago • Data from facility
                         </div>
                       )}
-                    </div>
-                  )}
-                  
-                  {/* Insurance Warning */}
-                  {!selectedLocation.inNetwork && (
-                    <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-                      <div className="flex items-start gap-2">
-                        <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                        <div>
-                          <span className="font-medium text-amber-800 dark:text-amber-200">Out-of-Network Warning</span>
-                          <p className="text-sm text-amber-700 dark:text-amber-300 mt-1">
-                            This facility may not be covered by {childInsurance}. You may be responsible for higher costs.
-                          </p>
-                        </div>
-                      </div>
                     </div>
                   )}
 
