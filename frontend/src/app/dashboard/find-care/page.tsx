@@ -863,23 +863,25 @@ export default function FindCarePage() {
         )}
 
         {/* Human Logic Steps */}
-        <div className="mt-4 pt-3 border-t border-cyan-200 dark:border-cyan-800/50">
-          <p className="text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-2">AI Reasoning Trace (Step-by-Step):</p>
-          <div className="flex flex-wrap gap-2 text-xs text-cyan-700 dark:text-cyan-300">
-            {(derivedReport?.human_logic_steps?.length > 0
-              ? derivedReport.human_logic_steps
-              : [
-                "Step 1: Parsed user intent",
-                "Step 2: Scanned radius for proximity",
-                "Step 3: Extracted unstructured medical capabilities",
-                "Step 4: Evaluated missing staff (Contradiction Check)",
-                "Step 5: Ranked by Trust Score"
-              ]
-            ).map((step: string, idx: number) => (
-              <span key={idx} className="bg-cyan-100 dark:bg-cyan-900/40 px-2 py-1 rounded border border-cyan-200 dark:border-cyan-800">{step}</span>
-            ))}
+        {(derivedReport || isFetchingAI) && (
+          <div className="mt-4 pt-3 border-t border-cyan-200 dark:border-cyan-800/50">
+            <p className="text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-2">AI Reasoning Trace (Step-by-Step):</p>
+            <div className="flex flex-wrap gap-2 text-xs text-cyan-700 dark:text-cyan-300">
+              {(derivedReport?.human_logic_steps?.length > 0
+                ? derivedReport.human_logic_steps
+                : [
+                  "Step 1: Parsed user intent",
+                  "Step 2: Scanned radius for proximity",
+                  "Step 3: Extracted unstructured medical capabilities",
+                  "Step 4: Evaluated missing staff (Contradiction Check)",
+                  "Step 5: Ranked by Trust Score"
+                ]
+              ).map((step: string, idx: number) => (
+                <span key={idx} className="bg-cyan-100 dark:bg-cyan-900/40 px-2 py-1 rounded border border-cyan-200 dark:border-cyan-800">{step}</span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </Card>
 
 
