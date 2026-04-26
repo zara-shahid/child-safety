@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/Availability-24%2F7-blueviolet?style=for-the-badge" alt="24/7" />
   </p>
 
-  <p><em>Category: Live Agents — Built for the <a href="https://geminiliveagentchallenge.devpost.com/">Gemini Live Agent Challenge</a></em></p>
+  <p><em>Category: Live Agents — Built for the <a href="https://geminiliveagentchallenge.devpost.com/">Hack-Nation Hackathon</a></em></p>
 
   <br />
 
