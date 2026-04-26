@@ -56,121 +56,105 @@ interface CareLocation {
 
 const mockLocations: CareLocation[] = [
   {
-    id: 'fsd-1',
-    name: "The Children's Hospital, Faisalabad",
+    id: 'del-1',
+    name: "All India Institute of Medical Sciences (AIIMS)",
     type: 'er',
-    address: 'Jhang Road, Faisalabad, Pakistan',
+    address: 'Ansari Nagar, New Delhi, India',
     distance: '1.2 km',
     distanceMiles: 0.75,
-    phone: '+92 41 9210170',
+    phone: '+91 11 2658 8500',
     hours: 'Open 24 hours',
     isOpen: true,
-    rating: 4.7,
-    waitTime: '30 min',
-    waitTimeVerified: true,
-    acceptsWalkIns: true,
-    coordinates: { lat: 31.4398, lng: 73.0694 },
-  },
-  {
-    id: 'fsd-2',
-    name: 'Allied Hospital, Faisalabad',
-    type: 'er',
-    address: 'Sargodha Road, Faisalabad, Pakistan',
-    distance: '3.5 km',
-    distanceMiles: 2.1,
-    phone: '+92 41 9210082',
-    hours: 'Open 24 hours',
-    isOpen: true,
-    rating: 4.4,
-    waitTime: '1 hour',
-    waitTimeVerified: true,
-    acceptsWalkIns: true,
-    coordinates: { lat: 31.4285, lng: 73.0782 },
-  },
-  {
-    id: 'fsd-3',
-    name: 'Faisalabad Institute of Cardiology (FIC)',
-    type: 'er',
-    address: 'Civil Lines, Faisalabad, Pakistan',
-    distance: '4.8 km',
-    distanceMiles: 3.0,
-    phone: '+92 41 9201515',
-    hours: 'Open 24 hours',
-    isOpen: true,
-    rating: 4.6,
+    rating: 4.8,
     waitTime: '20 min',
     waitTimeVerified: true,
     acceptsWalkIns: true,
-    coordinates: { lat: 31.4168, lng: 73.0768 },
+    coordinates: { lat: 28.5672, lng: 77.2100 },
   },
   {
-    id: 'khi-1',
-    name: 'Aga Khan University Hospital (AKUH)',
+    id: 'del-2',
+    name: "Safdarjung Hospital",
     type: 'er',
-    address: 'National Stadium Rd, Karachi, Pakistan',
-    distance: '1100 km',
-    distanceMiles: 680,
-    phone: '+92 21 111 911 911',
+    address: 'Safdarjung, New Delhi, India',
+    distance: '3.1 km',
+    distanceMiles: 1.9,
+    phone: '+91 11 2673 0000',
+    hours: 'Open 24 hours',
+    isOpen: true,
+    rating: 4.3,
+    waitTime: '45 min',
+    waitTimeVerified: true,
+    acceptsWalkIns: true,
+    coordinates: { lat: 28.5689, lng: 77.2074 },
+  },
+  {
+    id: 'del-3',
+    name: "Lok Nayak Hospital",
+    type: 'er',
+    address: 'Jawaharlal Nehru Marg, New Delhi, India',
+    distance: '4.5 km',
+    distanceMiles: 2.8,
+    phone: '+91 11 2323 2400',
+    hours: 'Open 24 hours',
+    isOpen: true,
+    rating: 4.1,
+    waitTime: '1 hour',
+    waitTimeVerified: true,
+    acceptsWalkIns: true,
+    coordinates: { lat: 28.6390, lng: 77.2410 },
+  },
+  {
+    id: 'mum-1',
+    name: "Tata Memorial Hospital, Mumbai",
+    type: 'er',
+    address: 'Dr E Borges Road, Parel, Mumbai, India',
+    distance: '1400 km',
+    distanceMiles: 870,
+    phone: '+91 22 2417 7000',
     hours: 'Open 24 hours',
     isOpen: true,
     rating: 4.9,
     waitTime: '15 min',
     waitTimeVerified: true,
     acceptsWalkIns: true,
-    coordinates: { lat: 24.8923, lng: 67.0747 },
+    coordinates: { lat: 18.9994, lng: 72.8414 },
   },
   {
-    id: 'lhr-1',
-    name: "The Children's Hospital, Lahore",
-    type: 'er',
-    address: 'Ferozepur Road, Lahore, Pakistan',
-    distance: '120 km',
-    distanceMiles: 75,
-    phone: '+92 42 99230901',
-    hours: 'Open 24 hours',
-    isOpen: true,
-    rating: 4.8,
-    waitTime: '40 min',
-    waitTimeVerified: true,
-    acceptsWalkIns: true,
-    coordinates: { lat: 31.4828, lng: 74.3435 },
-  },
-  {
-    id: 'fsd-4',
-    name: 'Madina Teaching Hospital',
+    id: 'del-4',
+    name: "Kalawati Saran Children's Hospital",
     type: 'pediatrician',
-    address: 'Sargodha Road, Faisalabad, Pakistan',
-    distance: '5.2 km',
-    distanceMiles: 3.2,
-    phone: '+92 41 8868326',
+    address: 'Bangla Sahib Marg, New Delhi, India',
+    distance: '5.0 km',
+    distanceMiles: 3.1,
+    phone: '+91 11 2336 3738',
     hours: '9am - 8pm',
     isOpen: true,
-    rating: 4.5,
+    rating: 4.6,
     acceptsWalkIns: false,
-    coordinates: { lat: 31.4550, lng: 73.1119 },
+    coordinates: { lat: 28.6361, lng: 77.2075 },
   },
   {
-    id: 'fsd-5',
-    name: 'Clinix Pharmacy Faisalabad',
+    id: 'del-5',
+    name: 'Apollo Pharmacy, Connaught Place',
     type: 'pharmacy',
-    address: 'Satyana Road, Faisalabad, Pakistan',
-    distance: '0.8 km',
+    address: 'Connaught Place, New Delhi, India',
+    distance: '0.9 km',
     distanceMiles: 0.5,
-    phone: '+92 41 8502555',
+    phone: '+91 11 4600 1066',
     hours: 'Open 24 hours',
     isOpen: true,
-    rating: 4.3,
+    rating: 4.4,
     acceptsWalkIns: true,
-    coordinates: { lat: 31.4284, lng: 73.1256 },
+    coordinates: { lat: 28.6315, lng: 77.2167 },
   },
   {
     id: 'tele-1',
-    name: 'EPCID Tele-Consult (Pakistan)',
+    name: 'EPCID Tele-Consult (India)',
     type: 'telehealth',
     address: 'Virtual Visit',
     distance: '--',
     distanceMiles: 0,
-    phone: '0800-EPCID-PK',
+    phone: '1800-EPCID-IN',
     hours: 'Available 24/7',
     isOpen: true,
     rating: 4.6,
@@ -180,6 +164,7 @@ const mockLocations: CareLocation[] = [
     coordinates: { lat: 0, lng: 0 },
   },
 ]
+
 
 // Helper for distance calculation (Haversine formula)
 function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
@@ -234,26 +219,26 @@ const typeConfig = {
 
 export default function FindCarePage() {
   const { selectedChild, vitalReadings, symptomHistory, latestAssessment } = useStore()
-  
+
   const [selectedType, setSelectedType] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedLocation, setSelectedLocation] = useState<CareLocation | null>(null)
   const [isLocating, setIsLocating] = useState(false)
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [locationError, setLocationError] = useState<string | null>(null)
-  
+
   // API Integration states
   const [apiFacilities, setApiFacilities] = useState<any[]>([])
   const [apiReport, setApiReport] = useState<any>(null)
   const [isFetchingAI, setIsFetchingAI] = useState(false)
   const [activeRegion, setActiveRegion] = useState<string>('')
-  
+
   // Fetch from Python AI Backend when userLocation changes
   useEffect(() => {
     if (!userLocation) return
-    
+
     setIsFetchingAI(true)
-    fetch('http://localhost:8000/api/v1/facilities/recommend', {
+    fetch('http://localhost:8081/api/v1/facilities/recommend', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -266,29 +251,29 @@ export default function FindCarePage() {
         state_filter: activeRegion  // e.g. "Bihar" when Test Rural Bihar is clicked
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.recommended_facilities) {
-        setApiFacilities(data.recommended_facilities)
-      }
-      if (data.ai_decision_report) {
-        setApiReport(data.ai_decision_report)
-      }
-    })
-    .catch(err => console.error("Error fetching AI recommendations:", err))
-    .finally(() => setIsFetchingAI(false))
+      .then(res => res.json())
+      .then(data => {
+        if (data.recommended_facilities) {
+          setApiFacilities(data.recommended_facilities)
+        }
+        if (data.ai_decision_report) {
+          setApiReport(data.ai_decision_report)
+        }
+      })
+      .catch(err => console.error("Error fetching AI recommendations:", err))
+      .finally(() => setIsFetchingAI(false))
   }, [userLocation, activeRegion])
-  
+
   // Calculate current health acuity from real data
   const healthAcuity = useMemo(() => {
     let score = 0
     let reasons: string[] = []
-    
+
     // Check latest temperature
     const latestTemp = vitalReadings
       .filter(r => r.child_id === selectedChild?.id && r.type === 'temperature')
       .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0]
-    
+
     if (latestTemp) {
       const temp = latestTemp.value as number
       if (temp >= 104) {
@@ -302,18 +287,18 @@ export default function FindCarePage() {
         reasons.push('Low-grade fever')
       }
     }
-    
+
     // Check recent symptoms
     const recentSymptoms = symptomHistory
       .filter(s => s.child_id === selectedChild?.id)
       .filter(s => Date.now() - new Date(s.timestamp).getTime() < 24 * 60 * 60 * 1000)
-    
+
     const severeSymptoms = recentSymptoms.filter(s => s.severity === 'severe')
     if (severeSymptoms.length > 0) {
       score += 30
       reasons.push(`${severeSymptoms.length} severe symptom(s)`)
     }
-    
+
     // Check risk assessment
     if (latestAssessment?.risk_score) {
       if (latestAssessment.risk_score >= 70) {
@@ -321,11 +306,11 @@ export default function FindCarePage() {
         reasons.push('High risk assessment')
       }
     }
-    
+
     // Determine acuity level
     let level: 'low' | 'moderate' | 'high' | 'critical' = 'low'
     let recommendation: 'pediatrician' | 'telehealth' | 'urgent_care' | 'er' = 'pediatrician'
-    
+
     if (score >= 60) {
       level = 'critical'
       recommendation = 'er'
@@ -336,63 +321,63 @@ export default function FindCarePage() {
       level = 'moderate'
       recommendation = 'telehealth'
     }
-    
+
     return { score, level, recommendation, reasons }
   }, [selectedChild, vitalReadings, symptomHistory, latestAssessment])
-  
+
   // Enhance locations with insurance, recommendation, and dynamic distance
   const enhancedLocations = useMemo(() => {
     // 1. Determine base locations: Use real API data if available, otherwise mock data
-    const baseLocations = apiFacilities.length > 0 
+    const baseLocations = apiFacilities.length > 0
       ? apiFacilities.map((f, i) => {
-          let typeStr = 'pediatrician';
-          const capStr = (f.capability_match || []).join(' ').toLowerCase();
-          if (capStr.includes('emergency')) typeStr = 'er';
-          else if (capStr.includes('surgery')) typeStr = 'urgent_care';
-          else if (capStr.includes('consult')) typeStr = 'telehealth';
-          
-          return {
-            id: `api-${i}`,
-            name: f.name,
-            type: typeStr as any,
-            address: f.city ? `${f.city}, India` : 'India',
-            distance: `${f.distance_km} km`,
-            distanceMiles: f.distance_km * 0.621371,
-            phone: 'Contact facility directly',
-            hours: capStr.includes('24/7') ? 'Open 24 hours' : '9am - 5pm',
-            isOpen: true,
-            rating: f.trust_score >= 80 ? 4.8 : 3.5,
-            acceptsWalkIns: true,
-            coordinates: { lat: f.latitude || 0, lng: f.longitude || 0 },
-            trustScore: f.trust_score,
-            reasoning: f.reasoning,
-            capability_match: f.capability_match,
-            flags: []
-          };
+        let typeStr = 'pediatrician';
+        const capStr = (f.capability_match || []).join(' ').toLowerCase();
+        if (capStr.includes('emergency')) typeStr = 'er';
+        else if (capStr.includes('surgery')) typeStr = 'urgent_care';
+        else if (capStr.includes('consult')) typeStr = 'telehealth';
+
+        return {
+          id: `api-${i}`,
+          name: f.name,
+          type: typeStr as any,
+          address: f.city ? `${f.city}, India` : 'India',
+          distance: `${f.distance_km} km`,
+          distanceMiles: f.distance_km * 0.621371,
+          phone: 'Contact facility directly',
+          hours: capStr.includes('24/7') ? 'Open 24 hours' : '9am - 5pm',
+          isOpen: true,
+          rating: f.trust_score >= 80 ? 4.8 : 3.5,
+          acceptsWalkIns: true,
+          coordinates: { lat: f.latitude || 0, lng: f.longitude || 0 },
+          trustScore: f.trust_score,
+          reasoning: f.reasoning,
+          capability_match: f.capability_match,
+          flags: []
+        };
       })
       : mockLocations;
 
     return baseLocations.map(loc => {
-      
+
       // Calculate dynamic distance if user location is available and it's not an API location (API already returns distance)
       let displayDistance = loc.distance
       let distanceValue = loc.distanceMiles
-      
+
       if (userLocation && loc.coordinates.lat !== 0 && apiFacilities.length === 0) {
         const distKm = calculateDistance(
-          userLocation.lat, 
-          userLocation.lng, 
-          loc.coordinates.lat, 
+          userLocation.lat,
+          userLocation.lng,
+          loc.coordinates.lat,
           loc.coordinates.lng
         )
         displayDistance = distKm < 1 ? `${(distKm * 1000).toFixed(0)} m` : `${distKm.toFixed(1)} km`
         distanceValue = distKm * 0.621371 // Convert to miles for sorting
       }
-      
+
       // Determine if this location is recommended based on acuity
       let recommended = false
       let recommendationReason = ''
-      
+
       if (healthAcuity.level === 'critical' && loc.type === 'er') {
         recommended = true
         recommendationReason = 'Recommended for high fever/severe symptoms'
@@ -406,28 +391,28 @@ export default function FindCarePage() {
         recommended = true
         recommendationReason = 'Schedule a routine visit'
       }
-      
+
       let trustScore = loc.trustScore;
       let reasoning = loc.reasoning || [];
       let capability_match = loc.capability_match || [];
-      
+
       // Generate realistic mock trust score and reasoning if none provided (for mock locations)
       if (trustScore === undefined && apiFacilities.length === 0) {
-          const mockScores = [95, 82, 65, 98, 88, 72, 91, 100];
-          trustScore = mockScores[Math.abs(loc.name.length) % mockScores.length];
-          
-          if (trustScore < 70) {
-              reasoning = ["⚠ Missing doctors (-15)", "⚠ Incomplete equipment data (-15)"];
-              capability_match = ["✔ General checkup", "⚠ Surgery capability missing"];
-          } else if (trustScore < 90) {
-              reasoning = ["⚠ Minor data gaps (-10)"];
-              capability_match = ["✔ Surgery supported", "⚠ No ICU found"];
-          } else {
-              reasoning = ["✔ Highly verified data"];
-              capability_match = ["✔ ICU available", "✔ Surgery supported", "✔ 24/7 Emergency ready"];
-          }
+        const mockScores = [95, 82, 65, 98, 88, 72, 91, 100];
+        trustScore = mockScores[Math.abs(loc.name.length) % mockScores.length];
+
+        if (trustScore < 70) {
+          reasoning = ["⚠ Missing doctors (-15)", "⚠ Incomplete equipment data (-15)"];
+          capability_match = ["✔ General checkup", "⚠ Surgery capability missing"];
+        } else if (trustScore < 90) {
+          reasoning = ["⚠ Minor data gaps (-10)"];
+          capability_match = ["✔ Surgery supported", "⚠ No ICU found"];
+        } else {
+          reasoning = ["✔ Highly verified data"];
+          capability_match = ["✔ ICU available", "✔ Surgery supported", "✔ 24/7 Emergency ready"];
+        }
       }
-      
+
       return {
         ...loc,
         distance: displayDistance,
@@ -440,7 +425,7 @@ export default function FindCarePage() {
       }
     })
   }, [healthAcuity, userLocation, latestAssessment])
-  
+
   // Filter and sort locations
   const filteredLocations = useMemo(() => {
     let filtered = enhancedLocations.filter(loc => {
@@ -449,20 +434,20 @@ export default function FindCarePage() {
       if (!loc.isOpen) return false // Only show open locations
       return true
     })
-    
+
     // Sort by: recommended first, then in-network, then by distance
     filtered.sort((a, b) => {
       // Recommended locations first
       if (a.recommended && !b.recommended) return -1
       if (!a.recommended && b.recommended) return 1
-      
+
       // Then by distance
       return a.distanceMiles - b.distanceMiles
     })
-    
+
     return filtered
   }, [enhancedLocations, selectedType, searchQuery])
-  
+
   // Get the top recommendation
   const topRecommendation = filteredLocations.find(loc => loc.recommended)
 
@@ -474,7 +459,7 @@ export default function FindCarePage() {
   const handleCall = (phone: string) => {
     window.location.href = `tel:${phone.replace(/[^0-9]/g, '')}`
   }
-  
+
   const handleRideShare = (location: CareLocation, service: 'uber' | 'lyft') => {
     const encodedAddress = encodeURIComponent(location.address)
     if (service === 'uber') {
@@ -487,7 +472,7 @@ export default function FindCarePage() {
   const handleFindMyLocation = () => {
     setIsLocating(true)
     setLocationError(null)
-    
+
     if (!navigator.geolocation) {
       setLocationError('Geolocation is not supported by your browser')
       setIsLocating(false)
@@ -523,51 +508,46 @@ export default function FindCarePage() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Card className={`border-2 ${
-            healthAcuity.level === 'critical' 
-              ? 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
-              : healthAcuity.level === 'high'
-                ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700'
-                : 'bg-cyan-50 dark:bg-cyan-900/20 border-cyan-300 dark:border-cyan-700'
-          }`}>
+          <Card className={`border-2 ${healthAcuity.level === 'critical'
+            ? 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
+            : healthAcuity.level === 'high'
+              ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700'
+              : 'bg-cyan-50 dark:bg-cyan-900/20 border-cyan-300 dark:border-cyan-700'
+            }`}>
             <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                healthAcuity.level === 'critical' 
-                  ? 'bg-red-100 dark:bg-red-900/50'
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${healthAcuity.level === 'critical'
+                ? 'bg-red-100 dark:bg-red-900/50'
+                : healthAcuity.level === 'high'
+                  ? 'bg-amber-100 dark:bg-amber-900/50'
+                  : 'bg-cyan-100 dark:bg-cyan-900/50'
+                }`}>
+                <Zap className={`w-6 h-6 ${healthAcuity.level === 'critical'
+                  ? 'text-red-600 dark:text-red-400'
                   : healthAcuity.level === 'high'
-                    ? 'bg-amber-100 dark:bg-amber-900/50'
-                    : 'bg-cyan-100 dark:bg-cyan-900/50'
-              }`}>
-                <Zap className={`w-6 h-6 ${
-                  healthAcuity.level === 'critical' 
-                    ? 'text-red-600 dark:text-red-400'
-                    : healthAcuity.level === 'high'
-                      ? 'text-amber-600 dark:text-amber-400'
-                      : 'text-cyan-600 dark:text-cyan-400'
-                }`} />
+                    ? 'text-amber-600 dark:text-amber-400'
+                    : 'text-cyan-600 dark:text-cyan-400'
+                  }`} />
               </div>
               <div className="flex-1">
-                <h3 className={`font-bold ${
-                  healthAcuity.level === 'critical' 
-                    ? 'text-red-800 dark:text-red-200'
-                    : healthAcuity.level === 'high'
-                      ? 'text-amber-800 dark:text-amber-200'
-                      : 'text-cyan-800 dark:text-cyan-200'
-                }`}>
-                  {healthAcuity.level === 'critical' 
+                <h3 className={`font-bold ${healthAcuity.level === 'critical'
+                  ? 'text-red-800 dark:text-red-200'
+                  : healthAcuity.level === 'high'
+                    ? 'text-amber-800 dark:text-amber-200'
+                    : 'text-cyan-800 dark:text-cyan-200'
+                  }`}>
+                  {healthAcuity.level === 'critical'
                     ? `⚠️ Based on ${selectedChild.name}'s symptoms, we recommend the Emergency Room`
                     : healthAcuity.level === 'high'
                       ? `Based on ${selectedChild.name}'s current condition, we recommend Urgent Care`
                       : `${selectedChild.name}'s symptoms can likely be addressed via Telehealth`
                   }
                 </h3>
-                <p className={`text-sm mt-1 ${
-                  healthAcuity.level === 'critical' 
-                    ? 'text-red-700 dark:text-red-300'
-                    : healthAcuity.level === 'high'
-                      ? 'text-amber-700 dark:text-amber-300'
-                      : 'text-cyan-700 dark:text-cyan-300'
-                }`}>
+                <p className={`text-sm mt-1 ${healthAcuity.level === 'critical'
+                  ? 'text-red-700 dark:text-red-300'
+                  : healthAcuity.level === 'high'
+                    ? 'text-amber-700 dark:text-amber-300'
+                    : 'text-cyan-700 dark:text-cyan-300'
+                  }`}>
                   Detected: {healthAcuity.reasons.join(' • ')}
                 </p>
                 {topRecommendation && (
@@ -582,8 +562,8 @@ export default function FindCarePage() {
                           {topRecommendation.waitTime && ` • Wait: ${topRecommendation.waitTime}`}
                         </span>
                       </div>
-                      <Button 
-                        size="sm" 
+                      <Button
+                        size="sm"
                         onClick={() => handleGetDirections(topRecommendation)}
                         icon={<Navigation className="w-4 h-4" />}
                       >
@@ -621,8 +601,8 @@ export default function FindCarePage() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={() => {
               setUserLocation({ lat: 25.0961, lng: 85.3131 })
               setActiveRegion('Bihar')
@@ -632,8 +612,8 @@ export default function FindCarePage() {
           >
             🇮🇳 Test Rural Bihar
           </Button>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={() => {
               setUserLocation({ lat: 28.6139, lng: 77.2090 })
               setActiveRegion('Delhi')
@@ -643,8 +623,8 @@ export default function FindCarePage() {
           >
             🏙 New Delhi
           </Button>
-          <Button 
-            variant="secondary" 
+          <Button
+            variant="secondary"
             onClick={handleFindMyLocation}
             loading={isLocating}
             icon={<MapPin className="w-4 h-4" />}
@@ -668,11 +648,10 @@ export default function FindCarePage() {
         <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0">
           <button
             onClick={() => setSelectedType(null)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
-              selectedType === null
-                ? 'bg-cyan-500 text-white'
-                : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
-            }`}
+            className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${selectedType === null
+              ? 'bg-cyan-500 text-white'
+              : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
+              }`}
           >
             All
           </button>
@@ -680,11 +659,10 @@ export default function FindCarePage() {
             <button
               key={type}
               onClick={() => setSelectedType(type)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all flex items-center gap-2 ${
-                selectedType === type
-                  ? 'bg-cyan-500 text-white'
-                  : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
-              }`}
+              className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all flex items-center gap-2 ${selectedType === type
+                ? 'bg-cyan-500 text-white'
+                : 'bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700'
+                }`}
             >
               <config.icon className="w-4 h-4" />
               {config.label}
@@ -707,7 +685,7 @@ export default function FindCarePage() {
               ))}
             </svg>
           </div>
-          
+
           {/* Map markers */}
           {filteredLocations.slice(0, 5).map((loc, i) => {
             const positions = [
@@ -719,7 +697,7 @@ export default function FindCarePage() {
             ]
             const config = typeConfig[loc.type]
             const ConfigIcon = config.icon
-            
+
             return (
               <motion.div
                 key={loc.id}
@@ -730,15 +708,14 @@ export default function FindCarePage() {
                 style={positions[i]}
                 onClick={() => setSelectedLocation(loc)}
               >
-                <div className={`w-10 h-10 rounded-full border-3 border-white shadow-lg flex items-center justify-center ${
-                  loc.recommended 
-                    ? 'bg-gradient-to-br from-cyan-500 to-teal-500 animate-pulse' 
-                    : loc.type === 'er' ? 'bg-red-500'
+                <div className={`w-10 h-10 rounded-full border-3 border-white shadow-lg flex items-center justify-center ${loc.recommended
+                  ? 'bg-gradient-to-br from-cyan-500 to-teal-500 animate-pulse'
+                  : loc.type === 'er' ? 'bg-red-500'
                     : loc.type === 'urgent_care' ? 'bg-orange-500'
-                    : loc.type === 'telehealth' ? 'bg-violet-500'
-                    : loc.type === 'pharmacy' ? 'bg-emerald-500'
-                    : 'bg-cyan-500'
-                }`}>
+                      : loc.type === 'telehealth' ? 'bg-violet-500'
+                        : loc.type === 'pharmacy' ? 'bg-emerald-500'
+                          : 'bg-cyan-500'
+                  }`}>
                   <ConfigIcon className="w-5 h-5 text-white" />
                 </div>
                 {loc.recommended && (
@@ -749,13 +726,13 @@ export default function FindCarePage() {
               </motion.div>
             )
           })}
-          
+
           {/* Your location indicator */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="w-4 h-4 rounded-full bg-blue-500 border-2 border-white shadow-lg animate-ping" />
             <div className="absolute top-0 left-0 w-4 h-4 rounded-full bg-blue-500 border-2 border-white shadow-lg" />
           </div>
-          
+
           {/* Legend */}
           <div className="absolute bottom-3 left-3 bg-white/90 dark:bg-surface-800/90 rounded-lg p-2 text-xs">
             <div className="flex items-center gap-2 mb-1">
@@ -775,7 +752,7 @@ export default function FindCarePage() {
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
             {isFetchingAI ? (
-               <div className="w-5 h-5 border-2 border-cyan-600 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-5 h-5 border-2 border-cyan-600 border-t-transparent rounded-full animate-spin"></div>
             ) : (
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -791,7 +768,7 @@ export default function FindCarePage() {
             </p>
           </div>
         </div>
-        
+
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
             <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
@@ -801,7 +778,7 @@ export default function FindCarePage() {
               {apiReport?.what_is_safe || latestAssessment?.ai_decision_report?.what_is_safe || "Madina Teaching Hospital, EPCID Tele-Consult"}
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
             <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
               <span className="text-green-500">✔</span> Why they are safe
@@ -810,7 +787,7 @@ export default function FindCarePage() {
               {apiReport?.why_safe || latestAssessment?.ai_decision_report?.why_safe || "These facilities have high Trust Scores (>80) with verified capabilities and no critical medical contradictions."}
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
             <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
               <span className="text-red-500">⚠</span> What risks exist
@@ -819,7 +796,7 @@ export default function FindCarePage() {
               {apiReport?.risks_exist || latestAssessment?.ai_decision_report?.risks_exist || "Missing doctors, Incomplete equipment data"}
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-surface-800 p-3 rounded-lg shadow-sm border border-cyan-100 dark:border-cyan-800/50">
             <h4 className="font-bold text-sm text-surface-900 dark:text-white flex items-center gap-2 mb-1">
               <span className="text-blue-500">👉</span> Best for emergency care
@@ -829,7 +806,7 @@ export default function FindCarePage() {
             </p>
           </div>
         </div>
-        
+
         {/* Human Logic Steps */}
         <div className="mt-4 pt-3 border-t border-cyan-200 dark:border-cyan-800/50">
           <p className="text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-2">AI Reasoning Trace (Step-by-Step):</p>
@@ -855,7 +832,7 @@ export default function FindCarePage() {
             Nearby Locations ({filteredLocations.length})
           </h2>
         </div>
-        
+
         {filteredLocations.map((location, i) => {
           const config = typeConfig[location.type]
           return (
@@ -865,12 +842,11 @@ export default function FindCarePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
             >
-              <Card 
-                className={`border-l-4 ${
-                  location.recommended 
-                    ? 'border-cyan-500 ring-2 ring-cyan-200 dark:ring-cyan-800' 
-                    : config.borderColor
-                } hover:shadow-lg transition-shadow cursor-pointer relative`}
+              <Card
+                className={`border-l-4 ${location.recommended
+                  ? 'border-cyan-500 ring-2 ring-cyan-200 dark:ring-cyan-800'
+                  : config.borderColor
+                  } hover:shadow-lg transition-shadow cursor-pointer relative`}
                 onClick={() => setSelectedLocation(location)}
               >
                 {/* Recommended Badge */}
@@ -880,7 +856,7 @@ export default function FindCarePage() {
                     RECOMMENDED
                   </div>
                 )}
-                
+
                 <div className={`flex flex-col lg:flex-row lg:items-center gap-4 ${location.recommended ? 'pt-2' : ''}`}>
                   {/* Location Info */}
                   <div className="flex-1">
@@ -895,23 +871,23 @@ export default function FindCarePage() {
                             {location.isOpen ? 'Open' : 'Closed'}
                           </Badge>
                         </div>
-                        
+
                         {/* Trust Score & AI Reasoning */}
                         {location.trustScore !== undefined && (
                           <div className="mt-3 space-y-2">
                             <div className="flex items-center gap-2">
-                              <Badge 
+                              <Badge
                                 variant="secondary"
                                 size="sm"
                                 className={
-                                  location.trustScore >= 90 ? 'bg-green-100 text-green-800 border-green-200' : 
-                                  location.trustScore >= 70 ? 'bg-yellow-100 text-yellow-800 border-yellow-200' : 'bg-red-100 text-red-800 border-red-200'
+                                  location.trustScore >= 90 ? 'bg-green-100 text-green-800 border-green-200' :
+                                    location.trustScore >= 70 ? 'bg-yellow-100 text-yellow-800 border-yellow-200' : 'bg-red-100 text-red-800 border-red-200'
                                 }
                               >
                                 Trust Score: {location.trustScore} / 100
                               </Badge>
                             </div>
-                            
+
                             {/* Capabilities & Reasoning List */}
                             <div className="text-sm space-y-1 mt-2">
                               {(location.capability_match || []).map((match: string, idx: number) => (
@@ -927,14 +903,14 @@ export default function FindCarePage() {
                             </div>
                           </div>
                         )}
-                        
+
                         {/* Recommendation Reason */}
                         {location.recommendationReason && (
                           <p className="text-sm text-cyan-600 dark:text-cyan-400 font-medium mt-1">
                             {location.recommendationReason}
                           </p>
                         )}
-                        
+
                         <p className="text-sm text-surface-600 dark:text-surface-400">{location.address}</p>
                         <div className="flex items-center gap-4 mt-2 text-sm flex-wrap">
                           <span className="flex items-center gap-1 text-surface-500">
@@ -957,11 +933,10 @@ export default function FindCarePage() {
                   {/* Wait Time & Actions */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                     {location.waitTime && (
-                      <div className={`px-4 py-2 rounded-xl ${
-                        location.waitTimeVerified 
-                          ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800' 
-                          : 'bg-surface-100 dark:bg-surface-800'
-                      }`}>
+                      <div className={`px-4 py-2 rounded-xl ${location.waitTimeVerified
+                        ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                        : 'bg-surface-100 dark:bg-surface-800'
+                        }`}>
                         <div className="flex items-center gap-1 text-xs text-surface-500">
                           {location.waitTimeVerified ? (
                             <>
@@ -1086,7 +1061,7 @@ export default function FindCarePage() {
                       </div>
                     </div>
                   )}
-                  
+
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <MapPin className="w-5 h-5 text-surface-600 dark:text-surface-400" />
@@ -1107,11 +1082,10 @@ export default function FindCarePage() {
                   </div>
 
                   {selectedLocation.waitTime && (
-                    <div className={`p-4 rounded-xl ${
-                      selectedLocation.waitTimeVerified 
-                        ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800' 
-                        : 'bg-surface-50 dark:bg-surface-800'
-                    }`}>
+                    <div className={`p-4 rounded-xl ${selectedLocation.waitTimeVerified
+                      ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                      : 'bg-surface-50 dark:bg-surface-800'
+                      }`}>
                       <div className="flex items-center gap-2 text-sm text-surface-500 mb-1">
                         {selectedLocation.waitTimeVerified ? (
                           <>
@@ -1136,16 +1110,16 @@ export default function FindCarePage() {
 
                   {/* Primary Actions */}
                   <div className="flex gap-3 pt-2">
-                    <Button 
-                      variant="secondary" 
-                      fullWidth 
+                    <Button
+                      variant="secondary"
+                      fullWidth
                       onClick={() => handleCall(selectedLocation.phone)}
                       icon={<Phone className="w-4 h-4" />}
                     >
                       Call
                     </Button>
-                    <Button 
-                      fullWidth 
+                    <Button
+                      fullWidth
                       onClick={() => handleGetDirections(selectedLocation)}
                       icon={<Navigation className="w-4 h-4" />}
                       className="bg-gradient-to-r from-cyan-500 to-teal-600"
@@ -1153,7 +1127,7 @@ export default function FindCarePage() {
                       Get Directions
                     </Button>
                   </div>
-                  
+
                   {/* Ride Share Options */}
                   {selectedLocation.type !== 'telehealth' && (
                     <div className="pt-2">
@@ -1162,17 +1136,17 @@ export default function FindCarePage() {
                         Need a ride? Book instantly:
                       </div>
                       <div className="flex gap-3">
-                        <Button 
-                          variant="secondary" 
-                          fullWidth 
+                        <Button
+                          variant="secondary"
+                          fullWidth
                           onClick={() => handleRideShare(selectedLocation, 'uber')}
                           className="border-black dark:border-white"
                         >
                           <span className="font-bold">Uber</span>
                         </Button>
-                        <Button 
-                          variant="secondary" 
-                          fullWidth 
+                        <Button
+                          variant="secondary"
+                          fullWidth
                           onClick={() => handleRideShare(selectedLocation, 'lyft')}
                           className="border-pink-500 text-pink-600"
                         >
