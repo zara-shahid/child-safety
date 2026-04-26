@@ -2,14 +2,17 @@
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0891b2"/>
-      <stop offset="100%" style="stop-color:#06b6d4"/>
-    </linearGradient>
-    <linearGradient id="heart" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f43f5e"/>
-      <stop offset="100%" style="stop-color:#fb7185"/>
+      <stop offset="100%" style="stop-color:#0d9488"/>
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="100" fill="url(#bg)"/>
-  <path d="M256 380c-10 0-20-4-27-11l-67-67c-17-17-27-39-27-59 0-39 32-70 70-70 20 0 39 8 51 22 12-14 31-22 51-22 39 0 70 32 70 70 0 21-10 43-27 59l-67 67c-7 7-17 11-27 11z" fill="url(#heart)"/>
-  <path d="M171 235h170M256 150v170" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <!-- Child head -->
+  <circle cx="256" cy="140" r="55" fill="white" opacity="0.95"/>
+  <!-- Child body -->
+  <path d="M180 420 Q180 310 256 290 Q332 310 332 420Z" fill="white" opacity="0.95"/>
+  <!-- Arms -->
+  <path d="M180 320 Q140 280 130 250" stroke="white" stroke-width="28" stroke-linecap="round" fill="none" opacity="0.95"/>
+  <path d="M332 320 Q372 280 382 250" stroke="white" stroke-width="28" stroke-linecap="round" fill="none" opacity="0.95"/>
+  <!-- Heartbeat pulse line on chest -->
+  <path d="M195 355 L220 355 L235 325 L256 385 L277 325 L292 355 L317 355" stroke="#f43f5e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

@@ -15,54 +15,93 @@ const sizeConfig = {
   sm: {
     text: 'text-xl',
     icon: 'w-8 h-8',
-    iconInner: 'w-4 h-4',
     tagline: 'text-[8px]',
     fullName: 'text-[8px]',
   },
   md: {
     text: 'text-2xl',
     icon: 'w-10 h-10',
-    iconInner: 'w-5 h-5',
     tagline: 'text-[10px]',
     fullName: 'text-[9px]',
   },
   lg: {
     text: 'text-3xl',
     icon: 'w-12 h-12',
-    iconInner: 'w-6 h-6',
     tagline: 'text-xs',
     fullName: 'text-[10px]',
   },
   xl: {
     text: 'text-5xl',
     icon: 'w-16 h-16',
-    iconInner: 'w-8 h-8',
     tagline: 'text-sm',
     fullName: 'text-xs',
   },
   hero: {
     text: 'text-7xl md:text-8xl',
     icon: 'w-20 h-20 md:w-24 md:h-24',
-    iconInner: 'w-10 h-10 md:w-12 md:h-12',
     tagline: 'text-sm',
     fullName: 'text-sm',
   },
 }
 
-export function Logo({ 
-  size = 'md', 
-  showTagline = false, 
+function ChildIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className}>
+      <defs>
+        <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0891b2" />
+          <stop offset="100%" stopColor="#0d9488" />
+        </linearGradient>
+      </defs>
+      {/* Background rounded square */}
+      <rect width="24" height="24" rx="5" fill="url(#logoBg)" />
+      {/* Child head */}
+      <circle cx="12" cy="6.5" r="2.8" fill="white" />
+      {/* Child body */}
+      <path d="M8 20 Q8 14 12 13 Q16 14 16 20Z" fill="white" />
+      {/* Left arm */}
+      <path d="M8 15.5 Q6 13.5 5.5 12" stroke="white" strokeWidth="1.4" strokeLinecap="round" />
+      {/* Right arm */}
+      <path d="M16 15.5 Q18 13.5 18.5 12" stroke="white" strokeWidth="1.4" strokeLinecap="round" />
+      {/* Heartbeat pulse line */}
+      <path
+        d="M8.5 17 L10 17 L11 15 L12 19 L13 15 L14 17 L15.5 17"
+        stroke="#f43f5e"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  )
+}
+
+export function Logo({
+  size = 'md',
+  showTagline = false,
   showFullName = true,
-  showPulse = true, 
+  showPulse = true,
   animate = true,
-  className = '' 
+  className = '',
 }: LogoProps) {
   const config = sizeConfig[size]
-  
+
   return (
     <div className={`flex flex-col ${className}`}>
-      {/* Top Row: Logo Text + Pulse Icon */}
+      {/* Top Row: Icon + Text */}
       <div className="flex items-center gap-2">
+        {/* Child Silhouette Icon */}
+        {showPulse && (
+          <motion.div
+            initial={animate ? { opacity: 0, scale: 0.8 } : false}
+            animate={animate ? { opacity: 1, scale: 1 } : false}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className={`${config.icon} flex items-center justify-center flex-shrink-0`}
+          >
+            <ChildIcon className={config.icon} />
+          </motion.div>
+        )}
+
         {/* VitalKids Text */}
         <motion.span
           initial={animate ? { opacity: 0, x: -10 } : false}
@@ -72,49 +111,9 @@ export function Logo({
         >
           VitalKids
         </motion.span>
-        
-        {/* Heart with Pulse Icon - No background box */}
-        {showPulse && (
-          <motion.div 
-            initial={animate ? { opacity: 0, scale: 0.8 } : false}
-            animate={animate ? { opacity: 1, scale: 1 } : false}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className={`${config.icon} flex items-center justify-center`}
-          >
-            <svg 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              className={`${config.icon} text-cyan-500`}
-              stroke="currentColor" 
-              strokeWidth="1.5"
-            >
-              {/* Heart shape - filled */}
-              <path 
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
-                fill="url(#heartGradient)"
-                stroke="none"
-              />
-              {/* Pulse line - white */}
-              <path
-                d="M4 11h3l2-3 3 6 2-3h6"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              {/* Gradient definition */}
-              <defs>
-                <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#06b6d4" />
-                  <stop offset="100%" stopColor="#0d9488" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </motion.div>
-        )}
       </div>
-      
-      {/* Full Name - Below logo */}
+
+      {/* Full Name */}
       {showFullName && (
         <motion.div
           initial={animate ? { opacity: 0, y: 5 } : false}
@@ -127,7 +126,7 @@ export function Logo({
           </span>
         </motion.div>
       )}
-      
+
       {/* Tagline */}
       {showTagline && (
         <motion.span
@@ -147,39 +146,13 @@ export function Logo({
 export function LogoCompact({ className = '', showFullName = true }: { className?: string; showFullName?: boolean }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {/* Heart with Pulse Icon - No background */}
+      {/* Child Silhouette Icon */}
       <div className="relative w-10 h-10 flex items-center justify-center">
-        <svg 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          className="w-10 h-10"
-        >
-          {/* Heart shape - gradient filled */}
-          <path 
-            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
-            fill="url(#heartGradientCompact)"
-            stroke="none"
-          />
-          {/* Pulse line - white */}
-          <path
-            d="M4 11h3l2-3 3 6 2-3h6"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          {/* Gradient definition */}
-          <defs>
-            <linearGradient id="heartGradientCompact" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#06b6d4" />
-              <stop offset="100%" stopColor="#0d9488" />
-            </linearGradient>
-          </defs>
-        </svg>
+        <ChildIcon className="w-10 h-10" />
         {/* Status dot */}
-        <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white dark:border-navy-950" />
+        <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-white dark:border-gray-900" />
       </div>
-      
+
       {/* Text */}
       <div>
         <span className="text-lg font-bold text-surface-900 dark:text-white block">
