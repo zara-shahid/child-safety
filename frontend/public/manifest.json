@@ -1,6 +1,6 @@
 {
-  "name": "EPCID - Early Pediatric Critical Illness Detection",
-  "short_name": "EPCID",
+  "name": "VitalKids - Vital Monitoring for Kids",
+  "short_name": "VitalKids",
   "description": "Agentic AI platform for clinical decision support in pediatric care",
   "start_url": "/dashboard",
   "display": "standalone",
@@ -57,7 +57,7 @@
     {
       "name": "AI Chat",
       "short_name": "Chat",
-      "description": "Chat with EPCID Assistant",
+      "description": "Chat with VitalKids Assistant",
       "url": "/dashboard/chat"
     }
   ],
